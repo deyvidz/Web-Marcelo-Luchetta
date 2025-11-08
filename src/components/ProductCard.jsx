@@ -8,9 +8,9 @@ export default function ProductCard({product}) {
           className="w-full h-48 object-cover"
         />
         <div className="p-4">
-          <h2 className="text-xl font-bold text-gray-800 mb-2">
+          <h3 className="text-xl font-bold text-gray-800 mb-2">
             {product.name}
-          </h2>
+          </h3>
           <p className="text-gray-600 text-sm mb-3">
             {product.description}
           </p>
@@ -19,7 +19,7 @@ export default function ProductCard({product}) {
               ${product.price}
             </span>
             <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">
-              Add to Cart
+              Añadir al carrito
             </button>
           </div>
         </div>

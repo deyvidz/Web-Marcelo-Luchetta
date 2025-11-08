@@ -1,4 +1,5 @@
 import ProductList from "./ProductList";
+import NavBar from "./components/NavBar";
 import { useMemo } from "react";
 function App() {
 const products = [
@@ -64,6 +65,7 @@ const products = [
   return (
     <>
       <div>
+        <NavBar />
         <ProductList products={dental1Products} title={'Dental1'} />
         <ProductList products={dental2Products} title={'Dental2'} />
       </div>
