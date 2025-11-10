@@ -1,77 +1,34 @@
-// src/components/Footer.jsx
-import { Link } from 'react-router-dom';
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Contact from './pages/Contact';
+import About from './pages/About';
 
-export default function Footer() {
+function App() {
   return (
-    <footer className="bg-gray-800 text-gray-300">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          
-          {/* Columna 1: Información */}
-          <div>
-            <h3 className="text-white text-lg font-bold mb-4">DentalPro</h3>
-            <p className="text-sm leading-relaxed">
-              Tu proveedor de confianza en equipamiento odontológico profesional.
-            </p>
-          </div>
+    <CartProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <NavBar />
 
-          {/* Columna 2: Enlaces rápidos */}
-          <div>
-            <h3 className="text-white text-lg font-bold mb-4">Enlaces</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-sm hover:text-white transition-colors">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link to="/productos" className="text-sm hover:text-white transition-colors">
-                  Productos
-                </Link>
-              </li>
-              <li>
-                <Link to="/quien-soy" className="text-sm hover:text-white transition-colors">
-                  Quién Soy
-                </Link>
-              </li>
-              <li>
-                <Link to="/contacto" className="text-sm hover:text-white transition-colors">
-                  Contacto
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <main className="grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/productos" element={<Products />} />
+              <Route path="/contacto" element={<Contact />} />
+              <Route path="/quien-soy" element={<About />} />
+            </Routes>
+          </main>
 
-          {/* Columna 3: Contacto */}
-          <div>
-            <h3 className="text-white text-lg font-bold mb-4">Contacto</h3>
-            <ul className="space-y-2 text-sm">
-              <li>📧 info@dentalpro.com.ar</li>
-              <li>📱 +54 11 1234-5678</li>
-              <li>📍 Av. Corrientes 1234, CABA</li>
-            </ul>
-          </div>
-
-          {/* Columna 4: Horarios */}
-          <div>
-            <h3 className="text-white text-lg font-bold mb-4">Horarios</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Lunes - Viernes</li>
-              <li className="text-white font-semibold">9:00 - 18:00hs</li>
-              <li className="mt-4">Sábados</li>
-              <li className="text-white font-semibold">9:00 - 13:00hs</li>
-            </ul>
-          </div>
+          <Footer />
         </div>
-
-        {/* Línea divisoria */}
-        <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} DentalPro. Todos los derechos reservados.</p>
-          <p className="mt-2">
-            <span className="text-gray-400">Métodos de pago:</span> Efectivo | Transferencia Bancaria
-          </p>
-        </div>
-      </div>
-    </footer>
+      </Router>
+    </CartProvider>
   );
 }
+
+export default App;
