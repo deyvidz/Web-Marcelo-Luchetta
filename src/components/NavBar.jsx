@@ -59,17 +59,8 @@ export default function Navbar() {
             >
               Contacto
             </Link>
-          </div>
 
-          {/* Botón hamburguesa - móvil */}
-          <button
-            className="md:hidden text-2xl focus:outline-none"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? '✕' : '☰'}
-          </button>
-        </div>
-        {/* Icono del carrito */}
+            {/* Icono del carrito */}
         <div className="hidden md:flex relative ml-4">
           <button className="flex items-center space-x-2 bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-md transition-colors">
             <span className="text-xl">🛒</span>
@@ -81,6 +72,17 @@ export default function Navbar() {
             </span>
           )}
         </div>
+          </div>
+
+          {/* Botón hamburguesa - móvil */}
+          <button
+            className="md:hidden text-2xl focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? '✕' : '☰'}
+          </button>
+        </div>
+        
 
         {/* Menú móvil */}
         {isOpen && (
