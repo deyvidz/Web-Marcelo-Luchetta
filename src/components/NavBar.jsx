@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
+import CartModal from './CartModal';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
   const { getTotalItems } = useCart();
 
@@ -12,6 +14,7 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   return (
+    <>
     <nav className="bg-blue-600 text-white shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -26,8 +29,8 @@ export default function Navbar() {
             <Link
               to="/"
               className={`px-4 py-2 rounded-md transition-colors ${isActive('/')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Inicio
@@ -35,8 +38,8 @@ export default function Navbar() {
             <Link
               to="/productos"
               className={`px-4 py-2 rounded-md transition-colors ${isActive('/productos')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Productos
@@ -44,8 +47,8 @@ export default function Navbar() {
             <Link
               to="/quien-soy"
               className={`px-4 py-2 rounded-md transition-colors ${isActive('/quien-soy')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Quién Soy
@@ -53,25 +56,26 @@ export default function Navbar() {
             <Link
               to="/contacto"
               className={`px-4 py-2 rounded-md transition-colors ${isActive('/contacto')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Contacto
             </Link>
 
-            {/* Icono del carrito */}
-        <div className="hidden md:flex relative ml-4">
-          <button className="flex items-center space-x-2 bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-md transition-colors">
-            <span className="text-xl">🛒</span>
-            <span className="font-semibold">Carrito</span>
-          </button>
-          {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
-              {totalItems}
-            </span>
-          )}
-        </div>
+            {/* Icono del carrito - ⬅️ AHORA ABRE EL MODAL*/}
+            <div className="hidden md:flex relative ml-4">
+              <button onClick={() => setIsCartOpen(true)}
+                className="flex items-center space-x-2 bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-md transition-colors">
+                <span className="text-xl">🛒</span>
+                <span className="font-semibold">Carrito</span>
+              </button>
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Botón hamburguesa - móvil */}
@@ -82,7 +86,7 @@ export default function Navbar() {
             {isOpen ? '✕' : '☰'}
           </button>
         </div>
-        
+
 
         {/* Menú móvil */}
         {isOpen && (
@@ -91,8 +95,8 @@ export default function Navbar() {
               to="/"
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-2 rounded-md transition-colors ${isActive('/')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Inicio
@@ -101,8 +105,8 @@ export default function Navbar() {
               to="/productos"
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-2 rounded-md transition-colors ${isActive('/productos')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Productos
@@ -111,8 +115,8 @@ export default function Navbar() {
               to="/quien-soy"
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-2 rounded-md transition-colors ${isActive('/quien-soy')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Quién Soy
@@ -121,24 +125,36 @@ export default function Navbar() {
               to="/contacto"
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-2 rounded-md transition-colors ${isActive('/contacto')
-                  ? 'bg-blue-700 font-semibold'
-                  : 'hover:bg-blue-700'
+                ? 'bg-blue-700 font-semibold'
+                : 'hover:bg-blue-700'
                 }`}
             >
               Contacto
             </Link>
-            {/* Carrito móvil */}
-            <div className="flex items-center justify-between px-4 py-2 bg-blue-700 rounded-md">
+            {/* Carrito móvil - ⬅️ AHORA ABRE EL MODAL*/}
+             <button
+                onClick={() => {
+                  setIsCartOpen(true);
+                  setIsOpen(false);
+                }}
+                className="w-full flex items-center justify-between px-4 py-2 bg-blue-700 rounded-md"
+              >
               <span>🛒 Carrito</span>
               {totalItems > 0 && (
                 <span className="bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
-            </div>
+            </button>
           </div>
         )}
       </div>
     </nav>
+    {/* Modal del carrito - ⬅️ NUEVO */}
+      <CartModal 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+  />
+  </>
   );
 }
