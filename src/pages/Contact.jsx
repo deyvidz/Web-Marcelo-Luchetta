@@ -56,10 +56,10 @@ export default function Contact() {
       return;
     }
 
-    // Aquí simularemos el envío
+    // Aquí simulamos el envío
     console.log('Formulario enviado:', formData);
     
-    // En producción, aquí harías fetch() a tu backend
+    // Aca haría fetch() en el backend
     // Por ahora, simulamos éxito
     setSubmitted(true);
     setFormData({ name: '', email: '', phone: '', message: '' });
@@ -80,7 +80,7 @@ export default function Contact() {
 
         {/* Mensaje de éxito */}
         {submitted && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+          <div className="bg-green-100 border border-green-400 text-green-700 text-2xl px-3 py-4 rounded mb-6">
             ✅ ¡Mensaje enviado con éxito! Te contactaremos pronto.
           </div>
         )}
@@ -96,7 +96,7 @@ export default function Contact() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              className={`w-full px-4 py-2 border rounded-lg placeholder:text-gray-700/70 focus:outline-none focus:ring-2 ${
                 errors.name 
                   ? 'border-red-500 focus:ring-red-300' 
                   : 'border-gray-300 focus:ring-blue-300'
@@ -118,7 +118,7 @@ export default function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              className={`w-full px-4 py-2 border rounded-lg placeholder:text-gray-700/70 focus:outline-none focus:ring-2 ${
                 errors.email 
                   ? 'border-red-500 focus:ring-red-300' 
                   : 'border-gray-300 focus:ring-blue-300'
@@ -140,7 +140,7 @@ export default function Contact() {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg placeholder:text-gray-700/70 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="+54 11 1234-5678"
             />
           </div>
@@ -155,7 +155,7 @@ export default function Contact() {
               value={formData.message}
               onChange={handleChange}
               rows="5"
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+              className={`w-full px-4 py-2 border rounded-lg placeholder:text-gray-700/70 focus:outline-none focus:ring-2 ${
                 errors.message 
                   ? 'border-red-500 focus:ring-red-300' 
                   : 'border-gray-300 focus:ring-blue-300'
@@ -182,10 +182,9 @@ export default function Contact() {
             Otras formas de contacto
           </h2>
           <div className="space-y-3 text-gray-600">
-            <p>📧 Email: info@dentalpro.com.ar</p>
-            <p>📱 WhatsApp: +54 11 1234-5678</p>
-            <p>📍 Dirección: Av. Corrientes 1234, CABA</p>
-            <p>🕐 Horario: Lun-Vie 9:00-18:00hs</p>
+            <p>📧 Email: marceloluchetta@hotmail.com</p>
+            <p>📱 WhatsApp: +54 11 5249-8558</p>
+            <p>🕐 Instagram: @marcelo_luchetta</p>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ export default function Footer() {
             <h3 className="text-white text-lg font-bold mb-4">Contacto</h3>
             <ul className="space-y-2 text-xs">
               <li>📧 marceloluchetta@hotmail.com</li>
-              <li>📱 +54 11 5149-8558</li>
+              <li>📱 +54 11 5249-8558</li>
               <li>📍 Juan Ramirez de Velasco 1056, CABA</li>
             </ul>
           </div>
