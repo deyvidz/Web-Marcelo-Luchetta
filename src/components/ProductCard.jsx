@@ -20,22 +20,25 @@ export default function ProductCard({ product }) {
         <h3 className="text-xl font-bold text-gray-800 mb-2">
           {product.name}
         </h3>
-        <p className="text-gray-600 text-sm mb-3">
+        <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
           {product.description}
         </p>
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold text-blue-600">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+          <span className="text-2xl md:text-3xl font-extrabold text-blue-600">
             ${product.price.toLocaleString('es-AR')}
           </span>
 
           <button
             onClick={handleAddToCart}
-            className={`px-4 py-2 rounded-lg transition-all font-semibold ${added
-                ? 'bg-green-500 text-white'
-                : 'bg-blue-500 hover:bg-blue-600 text-white'
-              }`}
+            className={`px-5 py-3 rounded-xl transition-all duration-300 font-bold text-sm shadow-md hover:shadow-lg transform hover:scale-105 ${
+              added
+                ? 'bg-gradient-to-r from-green-500 to-green-600 text-white'
+                : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white'
+            }`}
+            tabIndex={0}
+            aria-label={`${added ? 'Producto agregado' : `Agregar ${product.name} al carrito`}`}
           >
-            {added ? '✓ Agregado' : 'Añadir al carrito'}
+            {added ? '✓ Agregado' : 'Añadir'}
           </button>
         </div>
       </div>

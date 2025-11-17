@@ -19,7 +19,6 @@ Interfaz limpia y responsive para explorar productos, gestionar un carrito y gen
 - Context API para estado global (carrito)
 - Vite (entorno de desarrollo, inferido)
 - Tailwind CSS (estilos por utilidades, inferido)
-- JavaScript, CSS
 
 ## Estado actual / propósito
 Proyecto funcional como MVP/demo: navegación, catálogo, carrito y generación de pedido por WhatsApp ya implementados. Está preparado para extenderse (persistencia, backend, checkout formal, autenticación, tests). El código está organizado para facilitar ampliaciones y personalizaciones.

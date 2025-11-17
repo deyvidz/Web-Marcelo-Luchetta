@@ -13,65 +13,95 @@ export default function Navbar() {
   // Función para verificar si el link está activo
   const isActive = (path) => location.pathname === path;
 
+  const handleToggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleCartClick = () => {
+    setIsCartOpen(true);
+    setIsOpen(false);
+  };
+
   return (
     <>
-    <nav className="bg-blue-600 text-white shadow-lg">
+    <nav className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 text-white shadow-xl sticky top-0 z-40">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold">🦷 Marcelo Luchetta</span>
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 hover:opacity-90 transition-opacity"
+            tabIndex={0}
+            aria-label="Ir al inicio"
+          >
+            <span className="text-xl md:text-2xl font-extrabold tracking-tight">Marcelo Luchetta</span>
           </Link>
 
           {/* Links desktop */}
-          <div className="hidden md:flex space-x-1">
+          <div className="hidden md:flex items-center space-x-2">
             <Link
               to="/"
-              className={`px-4 py-2 rounded-md transition-colors ${isActive('/')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/')
+                  ? 'bg-white text-blue-700 shadow-lg'
+                  : 'hover:bg-blue-800 hover:shadow-md'
+              }`}
+              tabIndex={0}
+              aria-label="Ir a inicio"
             >
               Inicio
             </Link>
             <Link
               to="/productos"
-              className={`px-4 py-2 rounded-md transition-colors ${isActive('/productos')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/productos')
+                  ? 'bg-white text-blue-700 shadow-lg'
+                  : 'hover:bg-blue-800 hover:shadow-md'
+              }`}
+              tabIndex={0}
+              aria-label="Ver productos"
             >
               Productos
             </Link>
             <Link
               to="/quien-soy"
-              className={`px-4 py-2 rounded-md transition-colors ${isActive('/quien-soy')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/quien-soy')
+                  ? 'bg-white text-blue-700 shadow-lg'
+                  : 'hover:bg-blue-800 hover:shadow-md'
+              }`}
+              tabIndex={0}
+              aria-label="Conocer más sobre nosotros"
             >
               Quién Soy
             </Link>
             <Link
               to="/contacto"
-              className={`px-4 py-2 rounded-md transition-colors ${isActive('/contacto')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/contacto')
+                  ? 'bg-white text-blue-700 shadow-lg'
+                  : 'hover:bg-blue-800 hover:shadow-md'
+              }`}
+              tabIndex={0}
+              aria-label="Contactarnos"
             >
               Contacto
             </Link>
 
-            {/* Icono del carrito - ⬅️ AHORA ABRE EL MODAL*/}
-            <div className="hidden md:flex relative ml-4">
-              <button onClick={() => setIsCartOpen(true)}
-                className="flex items-center space-x-2 bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-md transition-colors">
+            {/* Icono del carrito */}
+            <div className="relative ml-4">
+              <button 
+                onClick={handleCartClick}
+                className="flex items-center space-x-2 bg-blue-800 hover:bg-blue-900 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-md hover:shadow-lg"
+                tabIndex={0}
+                aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}
+              >
                 <span className="text-xl">🛒</span>
-                <span className="font-semibold">Carrito</span>
+                <span>Carrito</span>
               </button>
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center shadow-lg animate-pulse">
                   {totalItems}
                 </span>
               )}
@@ -80,8 +110,11 @@ export default function Navbar() {
 
           {/* Botón hamburguesa - móvil */}
           <button
-            className="md:hidden text-2xl focus:outline-none"
-            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-3xl focus:outline-none hover:opacity-80 transition-opacity p-2"
+            onClick={handleToggleMenu}
+            tabIndex={0}
+            aria-label="Abrir menú de navegación"
+            aria-expanded={isOpen}
           >
             {isOpen ? '✕' : '☰'}
           </button>
@@ -90,58 +123,69 @@ export default function Navbar() {
 
         {/* Menú móvil */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
+          <div className="md:hidden pb-4 space-y-2 animate-slide-left">
             <Link
               to="/"
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-2 rounded-md transition-colors ${isActive('/')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/')
+                  ? 'bg-white text-blue-700 shadow-md'
+                  : 'hover:bg-blue-800'
+              }`}
+              tabIndex={0}
+              aria-label="Ir a inicio"
             >
               Inicio
             </Link>
             <Link
               to="/productos"
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-2 rounded-md transition-colors ${isActive('/productos')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/productos')
+                  ? 'bg-white text-blue-700 shadow-md'
+                  : 'hover:bg-blue-800'
+              }`}
+              tabIndex={0}
+              aria-label="Ver productos"
             >
               Productos
             </Link>
             <Link
               to="/quien-soy"
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-2 rounded-md transition-colors ${isActive('/quien-soy')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/quien-soy')
+                  ? 'bg-white text-blue-700 shadow-md'
+                  : 'hover:bg-blue-800'
+              }`}
+              tabIndex={0}
+              aria-label="Conocer más sobre nosotros"
             >
               Quién Soy
             </Link>
             <Link
               to="/contacto"
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-2 rounded-md transition-colors ${isActive('/contacto')
-                ? 'bg-blue-700 font-semibold'
-                : 'hover:bg-blue-700'
-                }`}
+              className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${
+                isActive('/contacto')
+                  ? 'bg-white text-blue-700 shadow-md'
+                  : 'hover:bg-blue-800'
+              }`}
+              tabIndex={0}
+              aria-label="Contactarnos"
             >
               Contacto
             </Link>
-            {/* Carrito móvil - ⬅️ AHORA ABRE EL MODAL*/}
-             <button
-                onClick={() => {
-                  setIsCartOpen(true);
-                  setIsOpen(false);
-                }}
-                className="w-full flex items-center justify-between px-4 py-2 bg-blue-700 rounded-md"
-              >
+            {/* Carrito móvil */}
+            <button
+              onClick={handleCartClick}
+              className="w-full flex items-center justify-between px-4 py-3 bg-blue-800 hover:bg-blue-900 rounded-lg transition-all duration-200 font-semibold shadow-md"
+              tabIndex={0}
+              aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}
+            >
               <span>🛒 Carrito</span>
               {totalItems > 0 && (
-                <span className="bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
+                <span className="bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center shadow-lg">
                   {totalItems}
                 </span>
               )}
