@@ -1,9 +1,11 @@
 // src/components/CartModal.jsx
 import { useCart } from '../hooks/useCart';
+import { useToast } from '../context/ToastContext';
 import { Link } from 'react-router-dom';
 
 export default function CartModal({ isOpen, onClose }) {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
+  const { showToast } = useToast();
 
   // Cerrar al hacer click fuera del modal
   const handleBackdropClick = (e) => {
@@ -95,8 +97,15 @@ export default function CartModal({ isOpen, onClose }) {
                     {/* Controles de cantidad */}
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="bg-white hover:bg-gray-100 w-8 h-8 rounded-lg flex items-center justify-center font-bold text-gray-700 shadow-sm transition-all duration-200"
+                        onClick={() => {
+                          if (item.quantity > 1) {
+                            updateQuantity(item.id, item.quantity - 1);
+                          } else {
+                            removeFromCart(item.id);
+                            showToast(`${item.name} eliminado del carrito`, 'info');
+                          }
+                        }}
+                        className="bg-white hover:bg-gray-100 active:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center font-bold text-gray-700 shadow-sm transition-all duration-200 hover:scale-110 active:scale-95"
                         aria-label="Disminuir cantidad"
                         tabIndex={0}
                       >
@@ -106,8 +115,11 @@ export default function CartModal({ isOpen, onClose }) {
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="bg-white hover:bg-gray-100 w-8 h-8 rounded-lg flex items-center justify-center font-bold text-gray-700 shadow-sm transition-all duration-200"
+                        onClick={() => {
+                          updateQuantity(item.id, item.quantity + 1);
+                          showToast(`Cantidad de ${item.name} actualizada`, 'success', 1000);
+                        }}
+                        className="bg-white hover:bg-gray-100 active:bg-gray-200 w-8 h-8 rounded-lg flex items-center justify-center font-bold text-gray-700 shadow-sm transition-all duration-200 hover:scale-110 active:scale-95"
                         aria-label="Aumentar cantidad"
                         tabIndex={0}
                       >
@@ -118,8 +130,11 @@ export default function CartModal({ isOpen, onClose }) {
 
                   {/* Botón eliminar */}
                   <button
-                    onClick={() => removeFromCart(item.id)}
-                    className="text-red-500 hover:text-red-700 hover:bg-red-50 font-bold p-2 rounded-lg transition-all duration-200 self-start"
+                    onClick={() => {
+                      removeFromCart(item.id);
+                      showToast(`${item.name} eliminado del carrito`, 'info');
+                    }}
+                    className="text-red-500 hover:text-red-700 hover:bg-red-50 active:bg-red-100 font-bold p-2 rounded-lg transition-all duration-200 self-start hover:scale-110 active:scale-95"
                     aria-label="Eliminar producto del carrito"
                     tabIndex={0}
                   >

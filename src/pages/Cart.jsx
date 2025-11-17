@@ -1,5 +1,6 @@
 // src/pages/Cart.jsx
 import { useCart } from '../hooks/useCart';
+import { useToast } from '../context/ToastContext';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -12,6 +13,7 @@ export default function Cart() {
     getTotalPrice, 
     getTotalItems 
   } = useCart();
+  const { showToast } = useToast();
 
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
@@ -44,6 +46,7 @@ export default function Cart() {
   const handleClearCart = () => {
     clearCart();
     setShowClearConfirm(false);
+    showToast('Carrito vaciado', 'info');
   };
 
   return (
@@ -118,8 +121,13 @@ export default function Cart() {
                     {/* Cantidad */}
                     <div className="flex items-center gap-2 bg-gray-50 rounded-xl p-2 border border-gray-200">
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="bg-white hover:bg-gray-100 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-gray-700 transition-all duration-200 shadow-sm hover:shadow-md"
+                        onClick={() => {
+                          updateQuantity(item.id, item.quantity - 1);
+                          if (item.quantity === 1) {
+                            showToast(`${item.name} eliminado del carrito`, 'info');
+                          }
+                        }}
+                        className="bg-white hover:bg-gray-100 active:bg-gray-200 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-gray-700 transition-all duration-200 shadow-sm hover:shadow-md hover:scale-110 active:scale-95"
                         aria-label="Disminuir cantidad"
                         tabIndex={0}
                       >
@@ -129,8 +137,10 @@ export default function Cart() {
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="bg-white hover:bg-gray-100 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-gray-700 transition-all duration-200 shadow-sm hover:shadow-md"
+                        onClick={() => {
+                          updateQuantity(item.id, item.quantity + 1);
+                        }}
+                        className="bg-white hover:bg-gray-100 active:bg-gray-200 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-gray-700 transition-all duration-200 shadow-sm hover:shadow-md hover:scale-110 active:scale-95"
                         aria-label="Aumentar cantidad"
                         tabIndex={0}
                       >
@@ -148,8 +158,11 @@ export default function Cart() {
 
                     {/* Botón eliminar */}
                     <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-red-500 hover:text-red-700 font-semibold text-sm transition-colors px-3 py-2 rounded-lg hover:bg-red-50"
+                      onClick={() => {
+                        removeFromCart(item.id);
+                        showToast(`${item.name} eliminado del carrito`, 'info');
+                      }}
+                      className="text-red-500 hover:text-red-700 font-semibold text-sm transition-all duration-200 px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100 hover:scale-105 active:scale-95"
                       aria-label="Eliminar producto del carrito"
                       tabIndex={0}
                     >

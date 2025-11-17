@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useToast } from '../context/ToastContext';
 
 export default function Contact() {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -9,7 +11,7 @@ export default function Contact() {
   });
   
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Manejar cambios en los inputs
   const handleChange = (e) => {
@@ -46,26 +48,32 @@ export default function Contact() {
   };
 
   // Enviar formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const newErrors = validate();
     
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      showToast('Por favor, completa todos los campos requeridos', 'error');
       return;
     }
 
-    // Aquí simulamos el envío
-    console.log('Formulario enviado:', formData);
-    
-    // Aca haría fetch() en el backend
-    // Por ahora, simulamos éxito
-    setSubmitted(true);
-    setFormData({ name: '', email: '', phone: '', message: '' });
-    
-    // Ocultar mensaje de éxito después de 5 segundos
-    setTimeout(() => setSubmitted(false), 5000);
+    setIsSubmitting(true);
+
+    // Simular envío (en producción sería un fetch)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay
+      
+      console.log('Formulario enviado:', formData);
+      
+      setFormData({ name: '', email: '', phone: '', message: '' });
+      showToast('¡Mensaje enviado con éxito! Te contactaremos pronto.', 'success');
+    } catch (error) {
+      showToast('Error al enviar el mensaje. Por favor, intenta nuevamente.', 'error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -77,14 +85,6 @@ export default function Contact() {
         <p className="text-gray-600 text-center mb-8">
           ¿Tienes alguna consulta? Completa el formulario y te responderemos a la brevedad
         </p>
-
-        {/* Mensaje de éxito */}
-        {submitted && (
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-400 text-green-800 text-lg px-6 py-4 rounded-xl mb-6 shadow-lg flex items-center gap-3 animate-slide-left">
-            <span className="text-2xl">✅</span>
-            <span className="font-semibold">¡Mensaje enviado con éxito! Te contactaremos pronto.</span>
-          </div>
-        )}
 
         <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded-2xl p-8 md:p-10 border border-gray-100">
           {/* Nombre */}
@@ -187,11 +187,21 @@ export default function Contact() {
           {/* Botón enviar */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-lg"
+            disabled={isSubmitting}
+            className={`w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
+              isSubmitting ? 'animate-pulse-soft' : ''
+            }`}
             tabIndex={0}
             aria-label="Enviar mensaje de contacto"
           >
-            Enviar Mensaje
+            {isSubmitting ? (
+              <span className="flex items-center justify-center gap-2">
+                <span className="animate-spin">⏳</span>
+                Enviando...
+              </span>
+            ) : (
+              'Enviar Mensaje'
+            )}
           </button>
         </form>
 
