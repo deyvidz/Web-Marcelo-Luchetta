@@ -20,8 +20,8 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
-      <div className="relative overflow-hidden">
-        <Link to={`/productos/${product.id}`} className='group' >
+      <div className="relative overflow-hidden group">
+        <Link to={`/productos/${product.id}`}>
         <img
           src={product.image}
           alt={product.name}
@@ -29,8 +29,8 @@ export default function ProductCard({ product }) {
         />
         </Link>
       </div>
-      <div className="p-4">
-      <Link to={`/productos/${product.id}`} className='group'>
+      <div className="p-4 group">
+      <Link to={`/productos/${product.id}`}>
         <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
           {product.name}
         </h3>
