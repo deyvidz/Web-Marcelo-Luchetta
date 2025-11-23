@@ -1,6 +1,7 @@
 import { useCart } from '../hooks/useCart';
 import { useState } from 'react';
 import { useToast } from '../context/ToastContext';
+import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
@@ -20,16 +21,20 @@ export default function ProductCard({ product }) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
       <div className="relative overflow-hidden">
+        <Link to={`/productos/${product.id}`} className='group' >
         <img
           src={product.image}
           alt={product.name}
           className="w-full h-48 object-cover"
         />
+        </Link>
       </div>
       <div className="p-4">
+      <Link to={`/productos/${product.id}`} className='group'>
         <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
           {product.name}
         </h3>
+        </Link>
         <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
           {product.description}
         </p>
@@ -37,7 +42,9 @@ export default function ProductCard({ product }) {
           <span className="text-2xl md:text-3xl font-extrabold text-blue-600">
             ${product.price.toLocaleString('es-AR')}
           </span>
-
+          <Link className={"px-5 py-3 rounded-xl transition-all duration-300 text-sm shadow-md hover:shadow-lg transform bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:scale-105 active:scale-95"}
+           to={`/productos/${product.id}`}>+ info
+          </Link>
           <button
             onClick={handleAddToCart}
             disabled={added}

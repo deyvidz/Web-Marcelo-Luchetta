@@ -13,7 +13,7 @@ export default function Home() {
                 {/* Overlay para mejor legibilidad */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/80"></div>
                 
-                {/* Hero Section */}
+                {/* Hero Section */}{/* TODO: eliminar el mensaje de bienvenida para agregar un carrusel de productos con botones JERARQUICOS CTA, agregar y mas info */}
                 <section className="container mx-auto px-4 py-20 md:py-28 text-center relative z-10">
                     <div className="max-w-4xl mx-auto">
                         <div className="flex items-center justify-center gap-4 mb-6">

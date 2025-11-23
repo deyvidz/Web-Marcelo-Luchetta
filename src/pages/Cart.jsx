@@ -50,14 +50,14 @@ export default function Cart() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 py-8 md:py-12">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50 py-8 md:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="mb-10 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 tracking-tight">
             🛒 Tu Carrito
           </h1>
-          <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto md:mx-0 rounded-full mb-4"></div>
+          <div className="w-32 h-1.5 bg-linear-to-br from-blue-600 to-blue-400 mx-auto md:mx-0 rounded-full mb-4"></div>
           <p className="text-lg text-gray-600 font-medium">
             {getTotalItems() === 0 
               ? 'No hay productos en tu carrito' 
@@ -87,7 +87,7 @@ export default function Cart() {
           </div>
         ) : (
           // Carrito con productos
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Columna izquierda: Lista de productos */}
             <div className="lg:col-span-2 space-y-5">
@@ -117,7 +117,7 @@ export default function Cart() {
                   </div>
 
                   {/* Controles */}
-                  <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-4">
+                  <div className="flex flex-wrap sm:flex-col sm:flex-nowrap items-center sm:items-end justify-between sm:justify-start gap-4 w-full">
                     {/* Cantidad */}
                     <div className="flex items-center gap-2 bg-gray-50 rounded-xl p-2 border border-gray-200">
                       <button
@@ -162,7 +162,7 @@ export default function Cart() {
                         removeFromCart(item.id);
                         showToast(`${item.name} eliminado del carrito`, 'info');
                       }}
-                      className="text-red-500 hover:text-red-700 font-semibold text-sm transition-all duration-200 px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100 hover:scale-105 active:scale-95"
+                      className="text-red-500 hover:text-red-700 font-semibold text-sm transition-all duration-200 px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100 hover:scale-105 active:scale-95 w-full sm:w-auto text-center"
                       aria-label="Eliminar producto del carrito"
                       tabIndex={0}
                     >

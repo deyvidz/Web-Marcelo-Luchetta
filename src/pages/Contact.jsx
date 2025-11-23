@@ -60,7 +60,7 @@ export default function Contact() {
     }
 
     setIsSubmitting(true);
-
+    // TODO: enviar el formulario a una BDD, con el nombre del formulario, el email, el telefono y el mensaje. 
     // Simular envío (en producción sería un fetch)
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay
