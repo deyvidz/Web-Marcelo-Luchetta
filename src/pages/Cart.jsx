@@ -50,14 +50,14 @@ export default function Cart() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50 py-8 md:py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 py-8 md:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="mb-10 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 tracking-tight">
             🛒 Tu Carrito
           </h1>
-          <div className="w-32 h-1.5 bg-linear-to-br from-blue-600 to-blue-400 mx-auto md:mx-0 rounded-full mb-4"></div>
+          <div className="w-32 h-1.5 bg-gradient-to-br from-blue-600 to-blue-400 mx-auto md:mx-0 rounded-full mb-4"></div>
           <p className="text-lg text-gray-600 font-medium">
             {getTotalItems() === 0 
               ? 'No hay productos en tu carrito' 
