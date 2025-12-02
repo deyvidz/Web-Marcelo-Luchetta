@@ -34,7 +34,7 @@ export default function CartModal({ isOpen, onClose }) {
         aria-labelledby="cart-modal-title"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-white">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-linear-to-r from-blue-50 to-white">
           <div>
             <h2 id="cart-modal-title" className="text-2xl md:text-3xl font-bold text-gray-900">
               🛒 Tu Carrito
@@ -63,7 +63,7 @@ export default function CartModal({ isOpen, onClose }) {
               <Link 
                 to="/productos"
                 onClick={onClose}
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl"
+                className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl"
                 tabIndex={0}
                 aria-label="Cerrar y ver productos"
               >
@@ -76,7 +76,7 @@ export default function CartModal({ isOpen, onClose }) {
               {cart.map((item) => (
                 <div
                   key={item.id}
-                  className="flex gap-4 bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                  className="flex gap-4 bg-linear-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
                 >
                   {/* Imagen */}
                   <img
@@ -148,7 +148,7 @@ export default function CartModal({ isOpen, onClose }) {
 
         {/* Footer con total */}
         {cart.length > 0 && (
-          <div className="border-t border-gray-200 p-6 space-y-4 bg-gradient-to-br from-gray-50 to-white">
+          <div className="border-t border-gray-200 p-6 space-y-4 bg-linear-to-br from-gray-50 to-white">
             {/* Total */}
             <div className="flex items-center justify-between text-2xl font-bold pb-4 border-b border-gray-200">
               <span className="text-gray-900">Total:</span>
@@ -162,7 +162,7 @@ export default function CartModal({ isOpen, onClose }) {
               <Link
                 to="/carrito"
                 onClick={onClose}
-                className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-center font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="block w-full bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-center font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 tabIndex={0}
                 aria-label="Ver carrito completo"
               >

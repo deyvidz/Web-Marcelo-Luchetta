@@ -50,14 +50,14 @@ export default function Cart() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 py-8 md:py-12">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50 py-8 md:py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="mb-10 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 tracking-tight">
             🛒 Tu Carrito
           </h1>
-          <div className="w-32 h-1.5 bg-gradient-to-br from-blue-600 to-blue-400 mx-auto md:mx-0 rounded-full mb-4"></div>
+          <div className="w-32 h-1.5 bg-linear-to-br from-blue-600 to-blue-400 mx-auto md:mx-0 rounded-full mb-4"></div>
           <p className="text-lg text-gray-600 font-medium">
             {getTotalItems() === 0 
               ? 'No hay productos en tu carrito' 
@@ -78,7 +78,7 @@ export default function Cart() {
             </p>
             <Link
               to="/productos"
-              className="inline-block bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg"
+              className="inline-block bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg"
               tabIndex={0}
               aria-label="Ver productos disponibles"
             >
@@ -240,7 +240,7 @@ export default function Cart() {
                 <div className="space-y-3 mb-6">
                   <button
                     onClick={handleWhatsAppCheckout}
-                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    className="w-full bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     tabIndex={0}
                     aria-label="Finalizar pedido por WhatsApp"
                   >

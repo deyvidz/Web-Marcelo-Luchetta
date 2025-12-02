@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <>
-    <nav className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 text-white shadow-xl sticky top-0 z-40">
+    <nav className="bg-linear-to-r from-blue-600 via-blue-700 to-blue-600 text-white shadow-xl sticky top-0 z-40">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
