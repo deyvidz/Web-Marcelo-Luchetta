@@ -8,9 +8,6 @@ export default function Home() {
         <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-blue-50">
             {/* Hero Section */}
             <section className="container mx-auto px-4 py-12">
-                <h2 className="text-center text-4xl font-bold text-gray-800 mb-4">
-                    ✨ Productos Destacados
-                </h2>
                 <ProductCarousel products={featuredProducts} />
             </section>
 

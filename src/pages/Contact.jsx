@@ -9,7 +9,7 @@ export default function Contact() {
     phone: '',
     message: ''
   });
-  
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -29,30 +29,30 @@ export default function Contact() {
   // Validar formulario
   const validate = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'El nombre es obligatorio';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'El email es obligatorio';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email inválido';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'El mensaje es obligatorio';
     }
-    
+
     return newErrors;
   };
 
   // Enviar formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const newErrors = validate();
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       showToast('Por favor, completa todos los campos requeridos', 'error');
@@ -64,13 +64,13 @@ export default function Contact() {
     // Simular envío (en producción sería un fetch)
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay
-      
+
       console.log('Formulario enviado:', formData);
-      
+
       setFormData({ name: '', email: '', phone: '', message: '' });
       showToast('¡Mensaje enviado con éxito! Te contactaremos pronto.', 'success');
     } catch (error) {
-      showToast('Error al enviar el mensaje. Por favor, intenta nuevamente.', 'error');
+      showToast('Error al enviar el mensaje. Por favor, intenta nuevamente.', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -97,11 +97,10 @@ export default function Contact() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full px-5 py-3 border-2 rounded-xl placeholder:text-gray-400 focus:outline-none focus:ring-4 transition-all duration-200 ${
-                errors.name 
-                  ? 'border-red-500 focus:ring-red-200 bg-red-50' 
+              className={`w-full px-5 py-3 border-2 rounded-xl placeholder:text-gray-400 focus:outline-none focus:ring-4 transition-all duration-200 ${errors.name
+                  ? 'border-red-500 focus:ring-red-200 bg-red-50'
                   : 'border-gray-300 focus:ring-blue-200 focus:border-blue-500'
-              }`}
+                }`}
               placeholder="Tu nombre completo"
               aria-label="Nombre completo"
               aria-invalid={!!errors.name}
@@ -124,11 +123,10 @@ export default function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full px-5 py-3 border-2 rounded-xl placeholder:text-gray-400 focus:outline-none focus:ring-4 transition-all duration-200 ${
-                errors.email 
-                  ? 'border-red-500 focus:ring-red-200 bg-red-50' 
+              className={`w-full px-5 py-3 border-2 rounded-xl placeholder:text-gray-400 focus:outline-none focus:ring-4 transition-all duration-200 ${errors.email
+                  ? 'border-red-500 focus:ring-red-200 bg-red-50'
                   : 'border-gray-300 focus:ring-blue-200 focus:border-blue-500'
-              }`}
+                }`}
               placeholder="tu@email.com"
               aria-label="Correo electrónico"
               aria-invalid={!!errors.email}
@@ -167,11 +165,10 @@ export default function Contact() {
               value={formData.message}
               onChange={handleChange}
               rows="6"
-              className={`w-full px-5 py-3 border-2 rounded-xl placeholder:text-gray-400 focus:outline-none focus:ring-4 transition-all duration-200 resize-none ${
-                errors.message 
-                  ? 'border-red-500 focus:ring-red-200 bg-red-50' 
+              className={`w-full px-5 py-3 border-2 rounded-xl placeholder:text-gray-400 focus:outline-none focus:ring-4 transition-all duration-200 resize-none ${errors.message
+                  ? 'border-red-500 focus:ring-red-200 bg-red-50'
                   : 'border-gray-300 focus:ring-blue-200 focus:border-blue-500'
-              }`}
+                }`}
               placeholder="Cuéntanos en qué podemos ayudarte..."
               aria-label="Mensaje"
               aria-invalid={!!errors.message}
@@ -188,9 +185,8 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
-              isSubmitting ? 'animate-pulse-soft' : ''
-            }`}
+            className={`w-full bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${isSubmitting ? 'animate-pulse-soft' : ''
+              }`}
             tabIndex={0}
             aria-label="Enviar mensaje de contacto"
           >
@@ -206,7 +202,7 @@ export default function Contact() {
         </form>
 
         {/* Información de contacto */}
-        <div className="mt-10 bg-gradient-to-br from-blue-50 to-white shadow-xl rounded-2xl p-8 border border-blue-100">
+        <div className="mt-10 bg-linear-to-br from-blue-50 to-white shadow-xl rounded-2xl p-8 border border-blue-100">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
             Otras formas de contacto
           </h2>
@@ -214,8 +210,8 @@ export default function Contact() {
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-3">📧</div>
               <p className="text-gray-600 font-medium mb-2">Email</p>
-              <a 
-                href="mailto:marceloluchetta@hotmail.com" 
+              <a
+                href="mailto:marceloluchetta@hotmail.com"
                 className="text-blue-600 hover:text-blue-700 font-semibold break-all"
                 tabIndex={0}
                 aria-label="Enviar email a marceloluchetta@hotmail.com"
@@ -226,9 +222,9 @@ export default function Contact() {
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-3">📱</div>
               <p className="text-gray-600 font-medium mb-2">WhatsApp</p>
-              <a 
-                href="https://wa.me/5491152498558" 
-                target="_blank" 
+              <a
+                href="https://wa.me/5491152498558"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-green-600 hover:text-green-700 font-semibold"
                 tabIndex={0}
@@ -240,9 +236,9 @@ export default function Contact() {
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-3">📸</div>
               <p className="text-gray-600 font-medium mb-2">Instagram</p>
-              <a 
-                href="https://instagram.com/marcelo_luchetta" 
-                target="_blank" 
+              <a
+                href="https://instagram.com/marcelo_luchetta"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-pink-600 hover:text-pink-700 font-semibold"
                 tabIndex={0}

@@ -2,6 +2,7 @@
 import { useCart } from '../hooks/useCart';
 import { useToast } from '../context/ToastContext';
 import { Link } from 'react-router-dom';
+import { Icons } from './icons/IconLibrary';
 
 export default function CartModal({ isOpen, onClose }) {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
@@ -36,8 +37,8 @@ export default function CartModal({ isOpen, onClose }) {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-linear-to-r from-blue-50 to-white">
           <div>
-            <h2 id="cart-modal-title" className="text-2xl md:text-3xl font-bold text-gray-900">
-              🛒 Tu Carrito
+            <h2 id="cart-modal-title" className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-gray-900">
+              <Icons.Cart className='w-10 h-10' /> Tu Carrito 
             </h2>
             <p className="text-sm text-gray-600 mt-1 font-medium">
               {getTotalItems()} {getTotalItems() === 1 ? 'producto' : 'productos'}
@@ -57,8 +58,8 @@ export default function CartModal({ isOpen, onClose }) {
         <div className="flex-1 overflow-y-auto p-6">
           {cart.length === 0 ? (
             // Carrito vacío
-            <div className="text-center py-16">
-              <div className="text-8xl mb-6">🛒</div>
+            <div className="flex flex-col justify-center items-center py-16">
+              <Icons.EmptyCart className='w-15 h-15 mb-6' />
               <p className="text-gray-700 mb-6 text-lg font-medium">Tu carrito está vacío</p>
               <Link 
                 to="/productos"
