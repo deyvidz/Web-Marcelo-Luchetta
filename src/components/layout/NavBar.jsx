@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../hooks/useCart';
-import CartModal from './CartModal';
-import { Icons } from "../components/icons/IconLibrary";
+import { useCart } from '../../hooks/useCart';
+import CartModal from '../features/CartModal';
+import { Icons } from "../icons/IconLibrary";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,19 +43,19 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Ir a instagram"><Icons.Instagram className='w-7 h-7' /></a>
-              <a
-                href="https://wa.me/5491152498558"
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={0}
-                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className='w-7 h-7' /></a>
+                aria-label="Ir a Instagram"><Icons.Instagram className='w-7 h-7' /></a>
               <a
                 href="https://www.facebook.com/marceloluchetta"
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Contactar por WhatsApp"><Icons.Facebook className='w-7 h-7' /></a>
+                aria-label="Ir a Facebook"><Icons.Facebook className='w-7 h-7' /></a>
+              <a
+                href="https://wa.me/5491152498558"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={0}
+                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className='w-6 h-6' /></a>
             </div>
             {/* Links desktop */}
             <div className="hidden md:flex items-center space-x-2">

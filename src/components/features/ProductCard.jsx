@@ -1,6 +1,6 @@
-import { useCart } from '../hooks/useCart';
+import { useCart } from '../../hooks/useCart';
 import { useState } from 'react';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '../../context/ToastContext';
 import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product }) {

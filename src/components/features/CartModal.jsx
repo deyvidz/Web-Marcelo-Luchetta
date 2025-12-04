@@ -1,8 +1,7 @@
 // src/components/CartModal.jsx
-import { useCart } from '../hooks/useCart';
-import { useToast } from '../context/ToastContext';
-import { Link } from 'react-router-dom';
-import { Icons } from './icons/IconLibrary';
+import { useCart } from '../../hooks/useCart';
+import { useToast } from '../../context/ToastContext';
+import { Icons } from '../../icons/IconLibrary';
 
 export default function CartModal({ isOpen, onClose }) {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();

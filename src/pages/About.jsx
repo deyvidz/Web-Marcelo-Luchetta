@@ -1,5 +1,5 @@
-import FeatureSection from "../components/FeatureSection";
-import vendedora from '../assets/images/vendedora.jpg';
+import FeatureSection from "../components/features/FeatureSection";
+import vendedora from '../assets/vendedora.jpg';
 
 export default function About() {
   return (

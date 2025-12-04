@@ -2,9 +2,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { ToastProvider } from './context/ToastContext';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
+import NavBar from './components/layout/NavBar';
+import Footer from './components/layout/Footer';
+import ScrollToTop from './components/ui/ScrollToTop';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
