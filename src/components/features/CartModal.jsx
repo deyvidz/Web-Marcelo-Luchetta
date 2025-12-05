@@ -1,7 +1,9 @@
 // src/components/CartModal.jsx
-import { useCart } from '../../hooks/useCart';
-import { useToast } from '../../context/ToastContext';
-import { Icons } from '../../icons/IconLibrary';
+import { useCart } from '../../hooks/useCart.js';
+import { useToast } from '../../context/ToastContext.jsx';
+import { Icons } from '../../icons/IconLibrary.jsx';
+import { formatPrice } from '../../utils/formatters.js';
+import { Link } from 'react-router-dom';
 
 export default function CartModal({ isOpen, onClose }) {
   const { cart, removeFromCart, updateQuantity, getTotalPrice, getTotalItems } = useCart();
@@ -37,7 +39,7 @@ export default function CartModal({ isOpen, onClose }) {
         <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-linear-to-r from-blue-50 to-white">
           <div>
             <h2 id="cart-modal-title" className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-gray-900">
-              <Icons.Cart className='w-10 h-10' /> Tu Carrito 
+              <Icons.Cart className='w-10 h-10' /> Tu Carrito
             </h2>
             <p className="text-sm text-gray-600 mt-1 font-medium">
               {getTotalItems()} {getTotalItems() === 1 ? 'producto' : 'productos'}
@@ -60,7 +62,7 @@ export default function CartModal({ isOpen, onClose }) {
             <div className="flex flex-col justify-center items-center py-16">
               <Icons.EmptyCart className='w-15 h-15 mb-6' />
               <p className="text-gray-700 mb-6 text-lg font-medium">Tu carrito está vacío</p>
-              <Link 
+              <Link
                 to="/productos"
                 onClick={onClose}
                 className="bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl"
@@ -91,7 +93,7 @@ export default function CartModal({ isOpen, onClose }) {
                       {item.name}
                     </h3>
                     <p className="text-blue-600 font-bold mb-3 text-lg">
-                      ${item.price.toLocaleString('es-AR')}
+                      {formatPrice(item.price)}
                     </p>
 
                     {/* Controles de cantidad */}
@@ -153,7 +155,7 @@ export default function CartModal({ isOpen, onClose }) {
             <div className="flex items-center justify-between text-2xl font-bold pb-4 border-b border-gray-200">
               <span className="text-gray-900">Total:</span>
               <span className="text-blue-600">
-                ${getTotalPrice().toLocaleString('es-AR')}
+                {formatPrice(getTotalPrice())}
               </span>
             </div>
 

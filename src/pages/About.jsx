@@ -1,4 +1,4 @@
-import FeatureSection from "../components/features/FeatureSection";
+import FeatureSection from "../components/features/FeatureSection.jsx";
 import vendedora from '../assets/vendedora.jpg';
 
 export default function About() {

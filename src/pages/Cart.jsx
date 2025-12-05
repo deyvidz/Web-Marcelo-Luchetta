@@ -1,8 +1,9 @@
 // src/pages/Cart.jsx
-import { useCart } from '../hooks/useCart';
-import { useToast } from '../context/ToastContext';
-import { Link } from 'react-router-dom';
+import { useCart } from '../hooks/useCart.js';
+import { useToast } from '../context/ToastContext.jsx';
+import { formatPrice } from '../utils/formatters.js';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
   const { 
@@ -24,11 +25,11 @@ export default function Cart() {
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.name}\n`;
       message += `   Cantidad: ${item.quantity}\n`;
-      message += `   Precio unitario: $${item.price.toLocaleString('es-AR')}\n`;
-      message += `   Subtotal: $${(item.price * item.quantity).toLocaleString('es-AR')}\n\n`;
+      message += `   Precio unitario: ${formatPrice(item.price)}\n`;
+      message += `   Subtotal: ${formatPrice(item.price * item.quantity)}\n\n`;
     });
     
-    message += `*TOTAL: $${getTotalPrice().toLocaleString('es-AR')}*\n\n`;
+    message += `*TOTAL: ${formatPrice(getTotalPrice())}*\n\n`;
     message += '¿Está disponible?';
     
     return encodeURIComponent(message);
@@ -112,7 +113,7 @@ export default function Cart() {
                       {item.description}
                     </p>
                     <p className="text-blue-600 font-bold text-xl">
-                      ${item.price.toLocaleString('es-AR')} c/u
+                      {formatPrice(item.price)} c/u
                     </p>
                   </div>
 
@@ -152,7 +153,7 @@ export default function Cart() {
                     <div className="text-right">
                       <p className="text-xs text-gray-500 mb-1 uppercase tracking-wide">Subtotal</p>
                       <p className="text-2xl font-bold text-gray-900">
-                        ${(item.price * item.quantity).toLocaleString('es-AR')}
+                        {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
 
@@ -220,7 +221,7 @@ export default function Cart() {
                 <div className="space-y-4 mb-8">
                   <div className="flex justify-between text-gray-700 pb-3 border-b border-gray-200">
                     <span className="font-medium">Productos ({getTotalItems()})</span>
-                    <span className="font-semibold">${getTotalPrice().toLocaleString('es-AR')}</span>
+                    <span className="font-semibold">{formatPrice(getTotalPrice())}</span>
                   </div>
                   <div className="flex justify-between text-gray-700 pb-3 border-b border-gray-200">
                     <span className="font-medium">Envío</span>
@@ -230,7 +231,7 @@ export default function Cart() {
                     <div className="flex justify-between text-2xl font-bold text-gray-900">
                       <span>Total</span>
                       <span className="text-blue-600">
-                        ${getTotalPrice().toLocaleString('es-AR')}
+                        {formatPrice(getTotalPrice())}
                       </span>
                     </div>
                   </div>

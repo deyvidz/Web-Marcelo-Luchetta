@@ -76,5 +76,44 @@ export const Icons = {
             fill="yellow"
             d="m17.53 20.75-5.529-2.9-5.53 2.9a.75.75 0 0 1-1.088-.79l1.056-6.153L1.967 9.45a.75.75 0 0 1 .415-1.28l6.182-.9 2.764-5.601a.75.75 0 0 1 1.345 0l2.764 5.6 6.182.9a.751.751 0 0 1 .42 1.281l-4.473 4.36 1.056 6.157a.748.748 0 0 1-1.088.79Z"
         />
-    </svg>)
+    </svg>),
+    ChevronRight: (props) => (<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={800}
+        height={800}
+        viewBox="0 0 24 24"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            d="M9.293 18.707a1 1 0 0 1 0-1.414L14.586 12 9.293 6.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414 0Z"
+        />
+    </svg>),
+    Plus: (props) => (<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={800}
+        height={800}
+        viewBox="0 0 24 24"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5a1 1 0 0 1 1-1Z"
+        />
+    </svg>),
+    Minus: (props) => (<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={800}
+        height={800}
+        viewBox="0 0 24 24"
+        fill="none"
+        {...props}
+    >
+        <path
+            fill="currentColor"
+            d="M5 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Z"
+        />
+    </svg>),
 };

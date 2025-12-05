@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '../context/ToastContext.jsx';
 
 export default function Contact() {
   const { showToast } = useToast();

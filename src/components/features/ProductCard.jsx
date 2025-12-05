@@ -1,6 +1,7 @@
-import { useCart } from '../../hooks/useCart';
+import { useCart } from '../../hooks/useCart.js';
+import { useToast } from '../../context/ToastContext.jsx';
+import { formatPrice } from '../../utils/formatters.js';
 import { useState } from 'react';
-import { useToast } from '../../context/ToastContext';
 import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
@@ -41,7 +42,7 @@ export default function ProductCard({ product }) {
         </p>
 
         <span className="text-2xl md:text-3xl font-extrabold text-blue-600">
-            ${product.price.toLocaleString('es-AR')}
+            {formatPrice(product.price)}
         </span>
         <div className="flex items-center justify-between pt-4 border-t mt-2 border-gray-100">
           <Link className={"px-5 py-3 rounded-xl transition-all duration-300 text-sm shadow-md hover:shadow-lg transform bg-linear-to-r bg-gray-100 hover:bg-gray-200 text-gray-800"}

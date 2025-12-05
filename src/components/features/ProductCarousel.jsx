@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../../hooks/useCart';
-import { Icons } from '../../icons/IconLibrary';
+import { useCart } from '../../hooks/useCart.js';
+import { Icons } from '../../icons/IconLibrary.jsx';
+import { formatPrice } from '../../utils/formatters.js';
 export default function ProductCarousel({ products }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { addToCart } = useCart();
@@ -78,7 +79,7 @@ export default function ProductCarousel({ products }) {
 
           <div className="flex items-baseline gap-2">
             <span className="text-5xl font-bold">
-              ${currentProduct.price.toLocaleString('es-AR')}
+              {formatPrice(currentProduct.price)}
             </span>
           </div>
 

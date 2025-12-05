@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import ProductCarousel from '../components/features/ProductCarousel.jsx';
-import FeatureSection from '../components/features/FeatureSection';
+import FeatureSection from '../components/features/FeatureSection.jsx';
 import { featuredProducts } from '../data/products';
 
 export default function Home() {

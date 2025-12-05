@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import ProductList from '../components/features/ProductList';
+import ProductList from '../components/features/ProductList.jsx';
 import { products } from '../data/products';
 
 export default function Products() {
