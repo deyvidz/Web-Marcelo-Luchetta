@@ -1,32 +1,47 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart.js';
 import { Icons } from '../../icons/IconLibrary.jsx';
 import { formatPrice } from '../../utils/formatters.js';
+
 export default function ProductCarousel({ products }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { addToCart } = useCart();
   const [justAdded, setJustAdded] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef(null);
+  const timeoutRef = useRef(null);
 
-
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length);
-  };
+    const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (products.length ? (prev + 1) % products.length : 0));
+  }, [products.length]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 4000);
+    if (!isAutoPlaying) return;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(nextSlide, 4000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    };
+  }, [isAutoPlaying, nextSlide]);
 
-    return () => clearInterval(interval);
-  }, [currentIndex, isAutoPlaying]);
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
+  // Protección: si no hay productos, renderizar null o un loader
+  if (!Array.isArray(products) || products.length === 0) {
+    return null;
+  }
   const prevSlide = () => {
     setCurrentIndex((prev) =>
       prev === 0 ? products.length - 1 : prev - 1
     );
+    setIsAutoPlaying(false);
   };
 
   const goToSlide = (index) => {
@@ -37,8 +52,11 @@ export default function ProductCarousel({ products }) {
   const handleAddToCart = () => {
     addToCart(products[currentIndex]);
     setJustAdded(true);
-    setTimeout(() => setJustAdded(false), 2000);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setJustAdded(false), 2000);
   };
+
+  
 
   const currentProduct = products[currentIndex];
 
@@ -66,7 +84,7 @@ export default function ProductCarousel({ products }) {
         <div className="text-white space-y-6 z-10">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-semibold">
             <Icons.Star className='w-5 h-5 ' />
-          <span className='text-blue-500'>PRODUCTO DESTACADO</span>
+            <span className='text-blue-500'>PRODUCTO DESTACADO</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold leading-tight">

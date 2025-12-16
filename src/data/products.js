@@ -7,7 +7,7 @@ export const products = [
     image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&q=80',
     description: 'Alta velocidad, bajo ruido, tecnología japonesa de última generación',
     category: 'Equipamiento',
-    featured: true // ⬅️ Producto destacado
+    featured: true 
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ export const products = [
     image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=500&q=80',
     description: 'Esterilización rápida y segura con sistema digital de control',
     category: 'Equipamiento',
-    featured: true // ⬅️ Producto destacado
+    featured: true
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ export const products = [
     image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&q=80',
     description: 'Iluminación profesional ajustable con tecnología LED',
     category: 'Iluminación',
-    featured: true // ⬅️ Producto destacado
+    featured: true 
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ export const products = [
     image: 'https://images.unsplash.com/photo-1629909615184-74f495363b67?w=500&q=80',
     description: 'Sistema integral con sillón ergonómico de última tecnología',
     category: 'Equipamiento',
-    featured: true // ⬅️ Producto destacado
+    featured: true 
   },
   {
     id: 6,

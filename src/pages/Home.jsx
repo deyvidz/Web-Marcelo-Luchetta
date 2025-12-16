@@ -1,15 +1,25 @@
 import { Link } from 'react-router-dom';
 import ProductCarousel from '../components/features/ProductCarousel.jsx';
 import FeatureSection from '../components/features/FeatureSection.jsx';
-import { featuredProducts } from '../data/products';
+import { useFeaturedProduct } from '../hooks/useProducts.js';
 
 export default function Home() {
+  const { products, loading} = useFeaturedProduct();
+
+    
     return (
         <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-blue-50">
             {/* Hero Section */}
             <section className="container mx-auto px-4 py-12">
-                <ProductCarousel products={featuredProducts} />
-            </section>
+        {/* pasar loading al carrusel y render condicional */}
+        {loading ? (
+          <div className="w-full h-96 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+          </div>
+        ) : (
+          <ProductCarousel products={products} loading={loading} />
+        )}
+      </section>
 
             {/* Features Section */}
             <section className="container mx-auto px-4 py-16 md:py-20">

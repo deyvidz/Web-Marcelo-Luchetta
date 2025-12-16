@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { products } from '../data/products.js';
+import { useProduct } from '../hooks/useProducts.js';
 import { useCart } from '../hooks/useCart.js';
 import { useToast } from '../context/ToastContext.jsx';
 import { formatPrice } from '../utils/formatters.js';
@@ -8,13 +8,39 @@ import { Icons } from '../icons/IconLibrary.jsx';
 
 export default function ProductPage() {
     const { id } = useParams();
+    const { product, loading, error } = useProduct(id);
     const { addToCart } = useCart();
     const { showToast } = useToast();
     const [added, setAdded] = useState(false);
     const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
 
-    const product = products.find(product => product.id === parseInt(id));
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="text-center">
+                    <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Cargando producto...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="text-center">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-4">Error</h1>
+                    <p className="text-gray-600 mb-8">{error}</p>
+                    <Link
+                        to="/productos"
+                        className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        Ver todos los productos
+                    </Link>
+                </div>
+            </div>
+        );
+    }
 
     // Si no existe el producto
     if (!product) {
