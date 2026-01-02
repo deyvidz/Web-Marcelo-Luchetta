@@ -15,7 +15,7 @@ export default function Products() {
   const filteredProducts = useMemo(() => {
     if (selectedCategory === 'Todos') return products;
     return products.filter(p => p.category === selectedCategory);
-  }, [selectedCategory,products]);
+  }, [selectedCategory, products]);
 
 
   if (loading) {
@@ -59,8 +59,8 @@ export default function Products() {
               key={cat}
               onClick={() => handleCategoryChange(cat)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${selectedCategory === cat
-                  ? 'bg-linear-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/50'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg border border-gray-200'
+                ? 'bg-linear-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/50'
+                : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg border border-gray-200'
                 }`}
               tabIndex={0}
               aria-label={`Filtrar por categoría ${cat}`}
@@ -72,11 +72,16 @@ export default function Products() {
         </div>
 
         {/* Lista de productos */}
+        <section className="bg-gray-100">
+        <div className="w-full h-1 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
         <ProductList
           products={filteredProducts}
           title={`${selectedCategory} (${filteredProducts.length})`}
         />
+          <div className="w-full h-1 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
+          </section>
       </div>
+
     </div>
   );
 }

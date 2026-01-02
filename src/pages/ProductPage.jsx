@@ -227,7 +227,7 @@ export default function ProductPage() {
 
                             <Link
                                 to="/carrito"
-                                className="py-4 px-8 rounded-xl font-semibold text-lg bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors text-center"
+                                className="py-4 px-8 rounded-xl font-semibold shadow-sm text-lg bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-200 transition-colors text-center"
                             >
                                 Ir al carrito
                             </Link>
@@ -256,13 +256,13 @@ export default function ProductPage() {
                         <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
                             <h3 className="text-lg font-semibold text-blue-900 mb-3">¿Necesitas asesoramiento?</h3>
                             <p className="text-blue-800 mb-4">
-                                Nuestro equipo de expertos está disponible para ayudarte a encontrar el producto perfecto para tu consultorio.
+                                Mandame mensaje por WhatsApp o Email y te ayudo a elegir el mejor producto para vos.
                             </p>
                             <Link
                                 to="/contacto"
                                 className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
                             >
-                                Contactar a un asesor
+                                Contacto
                             </Link>
                         </div>
                     </div>

@@ -1,4 +1,3 @@
-import FeatureSection from "../components/features/FeatureSection.jsx";
 import vendedora from '../assets/vendedora.jpg';
 
 export default function About() {
@@ -8,11 +7,11 @@ export default function About() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Sobre Nosotros
+            Sobre Mí
           </h1>
-          <div className="w-32 h-1.5 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
+          <div className="w-full h-1.5 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
           <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
-            Conoce nuestra historia, misión y compromiso con la excelencia en equipamiento odontológico
+            Conoce mi historia, misión y compromiso con la excelencia en equipamiento odontológico
           </p>
         </div>
 
@@ -34,11 +33,11 @@ export default function About() {
                 Marcelo Luchetta
               </h2>
               <p className="text-xl md:text-2xl text-blue-600 font-semibold mb-6">
-                Fundador y Especialista
+                Vendedor y Editor
               </p>
               <p className="text-gray-700 leading-relaxed text-lg">
-                Con más de 15 años de experiencia en el sector odontológico, 
-                fundé este proyecto con la misión de proporcionar equipamiento de 
+                Con más de 30 años de experiencia en el sector odontológico, 
+                fundé este proyecto con la misión de proporcionar productos de 
                 alta calidad a profesionales de toda Argentina.
               </p>
             </div>
@@ -47,7 +46,7 @@ export default function About() {
           {/* Historia */}
           <div className="space-y-6 text-gray-700 leading-relaxed text-lg border-t border-gray-200 pt-8">
             <p className="text-gray-800">
-              Después de años trabajando como odontólogo, identifiqué la necesidad 
+              Después de años trabajando como vendedor de libros odontológicos, identifiqué la necesidad 
               de contar con un proveedor confiable que ofreciera equipamiento 
               profesional a precios justos y con un servicio personalizado.
             </p>
@@ -57,36 +56,13 @@ export default function About() {
               la mejor tecnología disponible.
             </p>
             <p>
-              Hoy, somos reconocidos por nuestro compromiso con la calidad, 
-              la atención personalizada y el respaldo técnico que brindamos a 
-              cada uno de nuestros clientes.
+              Hoy, reconocido por el compromiso con la calidad, 
+              la atención personalizada y el respaldo técnico que se brinda a 
+              cada uno de los clientes.
             </p>
           </div>
         </div>
 
-        {/* Valores */}
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-10">
-            Nuestros Principios
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureSection 
-              title={'Nuestra Misión'} 
-              description={'Proveer equipamiento odontológico de calidad para mejorar la práctica profesional en Argentina'} 
-              icon={'🎯'}
-            />
-            <FeatureSection 
-              title={'Nuestra Visión'} 
-              description={'Ser el proveedor líder en equipamiento dental, reconocido por nuestra excelencia y servicio al cliente'} 
-              icon={'👁️'}
-            />
-            <FeatureSection 
-              title={'Nuestros Valores'} 
-              description={'Honestidad, calidad, compromiso con el cliente y pasión por la excelencia profesional'} 
-              icon={'💎'}
-            />
-          </div>
-        </div>
 
         {/* Estadísticas */}
         <div className="bg-linear-to-br from-blue-600 via-blue-700 to-blue-600 text-white rounded-2xl shadow-2xl p-8 md:p-12 mt-12 relative overflow-hidden">

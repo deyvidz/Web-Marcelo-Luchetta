@@ -51,9 +51,7 @@ const { getTotalItems } = useCart();
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Ir a Instagram"><Icons.Instagram className={`w-7 h-7 transition-colors duration-300 ${
-                  !isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
-                }`} /></a>
+                aria-label="Ir a Instagram"><Icons.Instagram className='w-7 h-7' /></a>
               <a
                 href="https://www.facebook.com/marceloluchetta"
                 target="_blank"

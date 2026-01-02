@@ -11,7 +11,7 @@ export const getProducts = async () => {
         }))
         return products;
     } catch (error) {
-        console.error('Error al obtener los productos:', error);
+        console.error('Error al obtener productos:', error);
         return [];
     }
 };
@@ -28,7 +28,7 @@ export const getProductById = async (id) => {
             }
         } else return null;
     } catch (e) {
-        console.log('error al obtener productos', e);
+        console.log('Error al obtener producto', e);
         return null;
     }
 };
@@ -40,7 +40,19 @@ export const getFeaturedProducts = async (limitNum = 6) => {
         const products = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
         return products;
     } catch (e) {
-        console.log('error al obtener productos destacados', e);
+        console.log('Error al obtener productos destacados', e);
+        return [];
+    }
+};
+export const getProductsByCategory = async (category, limitNum = 4) => {
+    try {
+        // Consulta sin orderBy para evitar requerimiento de índice compuesto.
+        const q = query(collection(db, 'products'), where('category', '==', category), limit(limitNum));
+        const snapshot = await getDocs(q);
+        const products = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        return products;
+    } catch (e) {
+        console.log('Error al obtener productos', e);
         return [];
     }
 };

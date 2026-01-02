@@ -82,9 +82,9 @@ export default function ProductCarousel({ products }) {
 
         {/* Columna Derecha: Información */}
         <div className="text-white space-y-6 z-10">
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm font-semibold">
+          <div className="flex items-center justify-center gap-2 bg-blue-300 px-4 py-1 rounded-full text-sm font-semibold">
             <Icons.Star className='w-5 h-5 ' />
-            <span className='text-blue-500'>PRODUCTO DESTACADO</span>
+            <span className='text-blue-800 font-bold'>PRODUCTOS DESTACADOS</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold leading-tight">

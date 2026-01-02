@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProducts, getProductById, getFeaturedProducts } from "../services/productService";
+import { getProducts, getProductById, getFeaturedProducts, getProductsByCategory } from "../services/productService";
 
 export const useProducts = () => {
     const [products, setProducts] = useState([]);
@@ -15,7 +15,7 @@ export const useProducts = () => {
                 setError(null);
             } catch (e) {
                 console.error('error', e);
-                setError('error al cargar los productos');
+                setError('Error al cargar los productos');
             } finally {
                 setLoading(false);
             }
@@ -39,7 +39,7 @@ export const useProduct = (id) => {
                 setError(null);
             } catch (e) {
                 console.error('error', e);
-                setError('error al cargar el producto')
+                setError('Error al cargar el producto')
             } finally {
                 setLoading(false)
             }
@@ -63,12 +63,40 @@ export const useFeaturedProduct = () => {
                 setError(null);
             } catch (e) {
                 console.error('error', e);
-                setError('error al cargar el producto')
+                setError('Error al cargar los productos')
             } finally {
                 setLoading(false)
             }
         };
         fetchProduct();
     }, []);
+    return { products, loading, error };
+}
+export const useProductByCategory = (category, limitNum = 4) => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (!category) {
+            setProducts([]);
+            setLoading(false);
+            return;
+        }
+        const fetchProduct = async () => {
+            try {
+                setLoading(true);
+                const data = await getProductsByCategory(category, limitNum);
+                setProducts(data);
+                setError(null);
+            } catch (e) {
+                console.error('error', e);
+                setError('Error al cargar los productos')
+            } finally {
+                setLoading(false)
+            }
+        };
+        fetchProduct();
+    }, [category, limitNum]);
     return { products, loading, error };
 }
