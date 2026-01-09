@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProducts, getProductById, getFeaturedProducts, getProductsByCategory } from "../services/productService";
+import { getProducts, getProductById, getFeaturedProducts, getProductsByCategory, getSearchProducts } from "../services/productService";
 
 export const useProducts = () => {
     const [products, setProducts] = useState([]);
@@ -98,5 +98,34 @@ export const useProductByCategory = (category, limitNum = 4) => {
         };
         fetchProduct();
     }, [category, limitNum]);
+    return { products, loading, error };
+}
+
+export const useSearchProducts = (name) => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (!name) {
+            setProducts([]);
+            setLoading(false);
+            return;
+        }
+        const fetchProduct = async () => {
+            try {
+                setLoading(true);
+                const data = await getSearchProducts(name);
+                setProducts(data);
+                setError(null);
+            } catch (e) {
+                console.error('error', e);
+                setError('Error al cargar los productos')
+            } finally {
+                setLoading(false)
+            }
+        };
+        fetchProduct();
+    }, [name]);
     return { products, loading, error };
 }

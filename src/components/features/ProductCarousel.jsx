@@ -33,10 +33,7 @@ export default function ProductCarousel({ products }) {
     };
   }, []);
 
-  // Protección: si no hay productos, renderizar null o un loader
-  if (!Array.isArray(products) || products.length === 0) {
-    return null;
-  }
+ 
   const prevSlide = () => {
     setCurrentIndex((prev) =>
       prev === 0 ? products.length - 1 : prev - 1

@@ -1,4 +1,4 @@
-import { collection, getDocs, doc,getDoc, query, where, limit } from 'firebase/firestore';
+import { collection, getDocs, doc,getDoc, query, where, limit, orderBy } from 'firebase/firestore';
 import { db } from './firebase';
 
 export const getProducts = async () => {
@@ -56,3 +56,22 @@ export const getProductsByCategory = async (category, limitNum = 4) => {
         return [];
     }
 };
+
+export const getSearchProducts = async (name) => {
+    //TODO: implementar KEYWORDS como en KYTINON pasta/membrana, reemplazar name_lower por '"keywords", "array-contains"'
+            try {
+                const q = query(
+                    collection(db, "products"),
+                    orderBy("name_lower"),
+                    where("name_lower", ">=", name),
+                    where("name_lower", "<=", name + "\uf8ff"),
+                    limit(10)
+                );
+                const snapshot = await getDocs(q);
+                const products = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                return products;    
+            } catch (err) {
+                console.error('Error al buscar productos', err);
+                return [];
+            }
+        };

@@ -4,6 +4,7 @@ import { useCart } from '../../hooks/useCart.js';
 import { useScroll } from '../../hooks/useScroll.js';
 import CartModal from '../features/CartModal.jsx';
 import { Icons } from "../../icons/IconLibrary.jsx";
+import SearchBar from './SearchBar.jsx';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ const { getTotalItems } = useCart();
       }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <div className='flex items-center gap-4'>
+            <div className='flex items-center gap-2'>
               {/* Logo */}
               <Link
                 to="/"
@@ -69,8 +70,9 @@ const { getTotalItems } = useCart();
                   !isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
                 }`} /></a>
             </div>
+            <SearchBar />
             {/* Links desktop */}
-            <div className="hidden md:flex items-center space-x-2">
+            <div className="hidden md:flex items-center space-x-1">
 
               <Link
                 to="/"

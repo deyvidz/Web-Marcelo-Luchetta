@@ -62,10 +62,10 @@ export default function Home() {
                 <div className="absolute inset-0 bg-pattern opacity-10"></div>
                 <div className="container mx-auto px-4 text-center relative z-10">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        ¿Necesitas asesoramiento?
+                        ¿Buscas un producto en específico?
                     </h2>
                     <p className="text-xl md:text-2xl mb-8 text-blue-100">
-                        Nuestro equipo está listo para ayudarte
+                        Contactanos y te ayudamos a encontrarlo.
                     </p>
                     <Link
                         to="/contacto"
@@ -73,7 +73,7 @@ export default function Home() {
                         tabIndex={0}
                         aria-label="Contáctanos para más información"
                     >
-                        Contáctanos
+                        Contactanos
                     </Link>
                 </div>
             </section>
