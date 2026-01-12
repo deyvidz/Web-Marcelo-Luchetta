@@ -1,24 +1,29 @@
 import { useState, useMemo } from 'react';
 import ProductList from '../components/features/ProductList.jsx';
-import { useProducts } from '../hooks/useProducts.js';
+import { useProducts, useSearchProducts } from '../hooks/useProducts.js';
+import SearchBar from '../components/layout/SearchBar.jsx';
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
-  const { products, loading, error } = useProducts();
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const categories = useMemo(() => {
-    const cats = ['Todos', ...new Set(products.map(p => p.category))];
-    return cats;
-  }, [products]);
+  const { products: allProducts, loading: loadingAll, error } = useProducts();
+  const { products: searchResults, loading: loadingSearch } = useSearchProducts(searchQuery);
+
+  const products = searchQuery ? searchResults : allProducts;
+
+  //Mostrar cada categoria por categoria de productos
+  const categories = ['Todos', ...new Set(products.map(product => product.category))];
 
   // Filtrar productos por categoría
   const filteredProducts = useMemo(() => {
+    if (searchQuery) return products;
     if (selectedCategory === 'Todos') return products;
-    return products.filter(p => p.category === selectedCategory);
-  }, [selectedCategory, products]);
+    return products.filter(product => product.category === selectedCategory);
+  }, [selectedCategory, products, searchQuery]);
 
 
-  if (loading) {
+  if (loadingAll) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"></div>
@@ -33,10 +38,13 @@ export default function Products() {
       </div>
     );
   }
-  // Obtener categorías únicas
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+  };
+
+  const handleSearchChange = (query) => {
+    setSearchQuery(query);
   };
 
   return (
@@ -51,7 +59,6 @@ export default function Products() {
             Descubre nuestra amplia gama de equipamiento odontológico profesional
           </p>
         </div>
-
         {/* Filtros de categoría */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map(cat => (
@@ -70,16 +77,25 @@ export default function Products() {
             </button>
           ))}
         </div>
+        {/* Barra de busqueda */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <SearchBar onSearchChange={handleSearchChange} />
+        </div>
 
         {/* Lista de productos */}
         <section className="bg-gray-100">
-        <div className="w-full h-1 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
-        <ProductList
-          products={filteredProducts}
-          title={`${selectedCategory} (${filteredProducts.length})`}
-        />
+
           <div className="w-full h-1 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
-          </section>
+          {loadingSearch ? (
+            <div className="flex justify-center items-center min-h-[200px]">
+              <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"></div>
+            </div>
+          ) : <ProductList
+            products={filteredProducts}
+            title={searchQuery ? `Resultados de búsqueda (${filteredProducts.length})` : `${selectedCategory} (${filteredProducts.length})`}
+          />}
+          <div className="w-full h-1 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
+        </section>
       </div>
 
     </div>

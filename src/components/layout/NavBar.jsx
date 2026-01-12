@@ -10,7 +10,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
-const { getTotalItems } = useCart();
+  const { getTotalItems } = useCart();
   const isScrolled = useScroll(50); // Cambia de estado después de 50px de scroll
 
   const totalItems = getTotalItems();
@@ -28,11 +28,10 @@ const { getTotalItems } = useCart();
 
   return (
     <>
-      <nav className={`sticky top-0 left-0 w-full backdrop-blur-md transition-all duration-300 z-50 ${
-        !isScrolled 
-          ? 'bg-blue-600/90 border-b border-blue-700/50 shadow-lg' 
+      <nav className={`sticky top-0 left-0 w-full backdrop-blur-md transition-all duration-300 z-50 ${!isScrolled
+          ? 'bg-blue-600/90 border-b border-blue-700/50 shadow-lg'
           : 'bg-white/40 border-b border-white/20'
-      }`}>
+        }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             <div className='flex items-center gap-2'>
@@ -43,9 +42,8 @@ const { getTotalItems } = useCart();
                 tabIndex={0}
                 aria-label="Ir al inicio"
               >
-                <span className={`text-xl md:text-2xl font-extrabold tracking-tight transition-colors duration-300 ${
-                  !isScrolled ? 'text-white' : 'text-gray-900'
-                }`}>Marcelo Luchetta</span>
+                <span className={`text-xl md:text-2xl font-extrabold tracking-tight transition-colors duration-300 ${!isScrolled ? 'text-white' : 'text-gray-900'
+                  }`}>Marcelo Luchetta</span>
               </Link>
 
               <a href="https://instagram.com/marcelo_luchetta"
@@ -58,19 +56,16 @@ const { getTotalItems } = useCart();
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Ir a Facebook"><Icons.Facebook className={`w-7 h-7 transition-colors duration-300 ${
-                  !isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
-                }`} /></a>
+                aria-label="Ir a Facebook"><Icons.Facebook className={`w-7 h-7 transition-colors duration-300 ${!isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
+                  }`} /></a>
               <a
                 href="https://wa.me/5491152498558"
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className={`w-6 h-6 transition-colors duration-300 ${
-                  !isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
-                }`} /></a>
+                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className={`w-6 h-6 transition-colors duration-300 ${!isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
+                  }`} /></a>
             </div>
-            <SearchBar />
             {/* Links desktop */}
             <div className="hidden md:flex items-center space-x-1">
 
@@ -78,8 +73,8 @@ const { getTotalItems } = useCart();
                 to="/"
                 className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/')
                   ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20 hover:shadow-md' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20 hover:shadow-md'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
                   }`}
                 tabIndex={0}
@@ -91,8 +86,8 @@ const { getTotalItems } = useCart();
                 to="/productos"
                 className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/productos')
                   ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20 hover:shadow-md' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20 hover:shadow-md'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
                   }`}
                 tabIndex={0}
@@ -104,8 +99,8 @@ const { getTotalItems } = useCart();
                 to="/quien-soy"
                 className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/quien-soy')
                   ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20 hover:shadow-md' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20 hover:shadow-md'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
                   }`}
                 tabIndex={0}
@@ -117,8 +112,8 @@ const { getTotalItems } = useCart();
                 to="/contacto"
                 className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/contacto')
                   ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20 hover:shadow-md' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20 hover:shadow-md'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
                   }`}
                 tabIndex={0}
@@ -131,15 +126,14 @@ const { getTotalItems } = useCart();
               <div className="relative ml-4">
                 <button
                   onClick={handleCartClick}
-                  className={`flex items-center space-x-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-md hover:shadow-lg ${
-                    !isScrolled 
-                      ? 'bg-white/20 text-white hover:bg-white/30' 
+                  className={`flex items-center space-x-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-md hover:shadow-lg ${!isScrolled
+                      ? 'bg-white/20 text-white hover:bg-white/30'
                       : 'bg-blue-300 hover:bg-blue-500 text-white'
-                  }`}
+                    }`}
                   tabIndex={0}
                   aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}
                 >
-                  <Icons.Cart className='w-5 h-5'/>
+                  <Icons.Cart className='w-5 h-5' />
                   <span>Carrito</span>
                 </button>
                 {totalItems > 0 && (
@@ -152,9 +146,8 @@ const { getTotalItems } = useCart();
 
             {/* Botón hamburguesa - móvil */}
             <button
-              className={`md:hidden text-3xl focus:outline-none hover:opacity-80 transition-opacity p-2 ${
-                !isScrolled ? 'text-white' : 'text-gray-700'
-              }`}
+              className={`md:hidden text-3xl focus:outline-none hover:opacity-80 transition-opacity p-2 ${!isScrolled ? 'text-white' : 'text-gray-700'
+                }`}
               onClick={handleToggleMenu}
               tabIndex={0}
               aria-label="Abrir menú de navegación"
@@ -173,8 +166,8 @@ const { getTotalItems } = useCart();
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/')
                   ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
@@ -187,8 +180,8 @@ const { getTotalItems } = useCart();
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/productos')
                   ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
@@ -201,8 +194,8 @@ const { getTotalItems } = useCart();
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/quien-soy')
                   ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
@@ -215,8 +208,8 @@ const { getTotalItems } = useCart();
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/contacto')
                   ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled 
-                    ? 'text-white hover:bg-white/20' 
+                  : !isScrolled
+                    ? 'text-white hover:bg-white/20'
                     : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
@@ -227,10 +220,9 @@ const { getTotalItems } = useCart();
               {/* Carrito móvil */}
               <button
                 onClick={handleCartClick}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 font-semibold shadow-md ${
-                    !isScrolled 
-                      ? 'bg-white/20 text-white hover:bg-white/30' 
-                      : 'bg-blue-300 hover:bg-blue-500 text-white'
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 font-semibold shadow-md ${!isScrolled
+                    ? 'bg-white/20 text-white hover:bg-white/30'
+                    : 'bg-blue-300 hover:bg-blue-500 text-white'
                   }`}
                 tabIndex={0}
                 aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}

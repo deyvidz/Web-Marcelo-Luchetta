@@ -103,7 +103,7 @@ export const useProductByCategory = (category, limitNum = 4) => {
 
 export const useSearchProducts = (name) => {
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -112,9 +112,11 @@ export const useSearchProducts = (name) => {
             setLoading(false);
             return;
         }
-        const fetchProduct = async () => {
+        setLoading(true);
+        {/*debounce de 500 ms */}
+        const fetchProduct = setTimeout(async () => {
             try {
-                setLoading(true);
+                
                 const data = await getSearchProducts(name);
                 setProducts(data);
                 setError(null);
@@ -124,8 +126,9 @@ export const useSearchProducts = (name) => {
             } finally {
                 setLoading(false)
             }
-        };
-        fetchProduct();
+        }, 500);
+        return () => clearTimeout(fetchProduct);
+
     }, [name]);
     return { products, loading, error };
 }
