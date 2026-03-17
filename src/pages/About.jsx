@@ -2,7 +2,7 @@ import vendedora from '../assets/vendedora.jpg';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50 py-12 md:py-16">
+    <div className="min-h-screen py-12 md:py-16">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-16">
@@ -20,13 +20,13 @@ export default function About() {
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center mb-10">
             {/* Imagen */}
             <div className="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-100 shrink-0">
-              <img 
-                src={vendedora} 
-                alt="Marcelo Luchetta" 
-                className="w-full h-full object-cover" 
+              <img
+                src={vendedora}
+                alt="Marcelo Luchetta"
+                className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Información */}
             <div className="flex-1 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -36,8 +36,8 @@ export default function About() {
                 Vendedor y Editor
               </p>
               <p className="text-gray-700 leading-relaxed text-lg">
-                Con más de 30 años de experiencia en el sector odontológico, 
-                fundé este proyecto con la misión de proporcionar productos de 
+                Con más de 30 años de experiencia en el sector odontológico,
+                fundé este proyecto con la misión de proporcionar productos de
                 alta calidad a profesionales de toda Argentina.
               </p>
             </div>
@@ -46,18 +46,18 @@ export default function About() {
           {/* Historia */}
           <div className="space-y-6 text-gray-700 leading-relaxed text-lg border-t border-gray-200 pt-8">
             <p className="text-gray-800">
-              Después de años trabajando como vendedor de libros odontológicos, identifiqué la necesidad 
-              de contar con un proveedor confiable que ofreciera equipamiento 
+              Después de años trabajando como vendedor de libros odontológicos, identifiqué la necesidad
+              de contar con un proveedor confiable que ofreciera equipamiento
               profesional a precios justos y con un servicio personalizado.
             </p>
             <p>
-              En 2010, decidí emprender este proyecto para ayudar a colegas y 
-              profesionales de la salud dental a equipar sus consultorios con 
+              En 2010, decidí emprender este proyecto para ayudar a colegas y
+              profesionales de la salud dental a equipar sus consultorios con
               la mejor tecnología disponible.
             </p>
             <p>
-              Hoy, reconocido por el compromiso con la calidad, 
-              la atención personalizada y el respaldo técnico que se brinda a 
+              Hoy, reconocido por el compromiso con la calidad,
+              la atención personalizada y el respaldo técnico que se brinda a
               cada uno de los clientes.
             </p>
           </div>

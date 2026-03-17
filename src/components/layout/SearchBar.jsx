@@ -27,7 +27,7 @@ export default function SearchBar({ onSearchChange }) {
             {query && (
                 <button
                     onClick={handleClear}
-                    className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700 text-xl font-bold"
+                    className="absolute right-3 top-1.5 text-gray-500 hover:text-gray-700 text-xl font-bold"
                     aria-label="Limpiar búsqueda"
                 >
                     ✕

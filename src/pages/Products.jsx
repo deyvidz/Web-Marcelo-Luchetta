@@ -2,7 +2,9 @@ import { useState, useMemo } from 'react';
 import ProductList from '../components/features/ProductList.jsx';
 import { useProducts, useSearchProducts } from '../hooks/useProducts.js';
 import SearchBar from '../components/layout/SearchBar.jsx';
+import Loading from '../components/features/Loading.jsx';
 
+//TODO: implementar los filtrados por categoria, precio y marca a un costado del ProductList
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,9 +27,7 @@ export default function Products() {
 
   if (loadingAll) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"></div>
-      </div>
+      <Loading />
     );
   }
 
@@ -48,7 +48,7 @@ export default function Products() {
   };
 
   return (
-    <div className="bg-linear-to-br from-blue-50 via-white to-blue-50 min-h-screen py-12 md:py-16">
+    <div className="min-h-screen py-12 md:py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
@@ -59,43 +59,57 @@ export default function Products() {
             Descubre nuestra amplia gama de equipamiento odontológico profesional
           </p>
         </div>
-        {/* Filtros de categoría */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => handleCategoryChange(cat)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${selectedCategory === cat
-                ? 'bg-linear-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/50'
-                : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg border border-gray-200'
-                }`}
-              tabIndex={0}
-              aria-label={`Filtrar por categoría ${cat}`}
-              aria-pressed={selectedCategory === cat}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+
         {/* Barra de busqueda */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center mb-12">
           <SearchBar onSearchChange={handleSearchChange} />
         </div>
 
-        {/* Lista de productos */}
-        <section className="bg-gray-100">
 
-          <div className="w-full h-1 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
-          {loadingSearch ? (
-            <div className="flex justify-center items-center min-h-[200px]">
-              <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"></div>
+        <div className='bg-gray-100 md:grid md:grid-flow-col grid-cols-12 gap-4'>
+
+          {/* Filtros de categoría */}
+          <div className="col-span-4 md:col-span-2 lg:col-span-2 xl:col-span-1 pr-6 ml-5 mt-5">
+            <h3 className="text-lg border-b border-gray-300 font-bold text-gray-900 pb-4 mb-6">Categoría</h3>
+
+            <div className="space-y-3">
+              {categories.map(cat => (
+                <label
+                  key={cat}
+                  className="flex items-center cursor-pointer group"
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedCategory === cat}
+                    onChange={() => handleCategoryChange(cat)}
+                    className="w-4 h-4 rounded border-gray-300 text-blue-600"
+                  />
+                  <span className={`ml-3 md:text-sm text-xs font-semibold transition-all ${selectedCategory === cat
+                    ? 'text-black'
+                    : 'text-gray-700 group-hover:text-gray-900'
+                    }`}>
+                    {cat}
+                  </span>
+                </label>
+              ))}
             </div>
-          ) : <ProductList
-            products={filteredProducts}
-            title={searchQuery ? `Resultados de búsqueda (${filteredProducts.length})` : `${selectedCategory} (${filteredProducts.length})`}
-          />}
-          <div className="w-full h-1 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
-        </section>
+
+          </div>
+          <div className="border-r border-gray-300"></div>
+
+          {/* Lista de productos */}
+          <section className="col-span-8 md:col-span-10 lg:col-span-10 xl:col-span-11 p-6 ">
+
+            <div className="border-b-2 border-gray-300"></div>
+            {loadingSearch ? (
+              <Loading />
+            ) : <ProductList
+              products={filteredProducts}
+              title={searchQuery ? `Resultados de búsqueda (${filteredProducts.length})` : `${selectedCategory} (${filteredProducts.length})`}
+            />}
+            <div className="border-b-2 border-gray-300 pr-6l"></div>
+          </section>
+        </div>
       </div>
 
     </div>

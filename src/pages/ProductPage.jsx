@@ -75,9 +75,9 @@ export default function ProductPage() {
     const decreaseQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen">
             {/* Breadcrumb */}
-            <nav className="bg-white border-b border-gray-200">
+            <nav>
                 <div className="container mx-auto px-4 py-4">
                     <ol className="flex items-center space-x-2 text-sm text-gray-600">
                         <li>

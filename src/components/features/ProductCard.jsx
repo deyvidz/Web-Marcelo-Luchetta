@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="max-w-sm bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform  group">
+    <div className="max-w-sm bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform  group flex flex-col h-full">
       <div className="relative overflow-hidden group">
         <Link to={`/productos/${product.id}`}>
         <img
@@ -30,21 +30,21 @@ export default function ProductCard({ product }) {
         />
         </Link>
       </div>
-      <div className="p-4 group">
+      <div className="p-4 group flex flex-col grow">
       <Link to={`/productos/${product.id}`}>
         <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-black transition-colors">
           {product.name}
         </h3>
         </Link>
 
-        <p className="text-gray-500 text-xs mb-4 line-clamp-3 leading-relaxed">
+        <p className="text-gray-500 text-xs mb-auto line-clamp-3 leading-relaxed">
           {product.description}
         </p>
 
         <span className="text-2xl md:text-3xl font-extrabold text-blue-600">
             {formatPrice(product.price)}
         </span>
-        <div className="flex items-center justify-between pt-4 border-t mt-2 border-gray-100">
+        <div className="flex items-center justify-between pt-4 border-t mt-auto border-gray-100">
           <Link className={"px-5 py-3 rounded-xl transition-all duration-300 text-sm shadow-md hover:shadow-lg transform bg-linear-to-r bg-gray-100 hover:bg-gray-200 text-gray-800"}
            to={`/productos/${product.id}`}>+ info
           </Link>

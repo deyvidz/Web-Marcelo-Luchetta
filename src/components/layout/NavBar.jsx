@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart.js';
-import { useScroll } from '../../hooks/useScroll.js';
+import logo from '../../assets/logo.png';
 import CartModal from '../features/CartModal.jsx';
 import { Icons } from "../../icons/IconLibrary.jsx";
-import SearchBar from './SearchBar.jsx';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
   const { getTotalItems } = useCart();
-  const isScrolled = useScroll(50); // Cambia de estado después de 50px de scroll
+
 
   const totalItems = getTotalItems();
   // Función para verificar si el link está activo
@@ -28,13 +27,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`sticky top-0 left-0 w-full backdrop-blur-md transition-all duration-300 z-50 ${!isScrolled
-          ? 'bg-blue-600/90 border-b border-blue-700/50 shadow-lg'
-          : 'bg-white/40 border-b border-white/20'
-        }`}>
+      <nav className='sticky top-0 left-0 w-full backdrop-blur-md transition-all duration-300 z-50'>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <div className='flex items-center gap-2'>
+            <div className='flex items-center justify-between gap-2'>
               {/* Logo */}
               <Link
                 to="/"
@@ -42,40 +38,18 @@ export default function Navbar() {
                 tabIndex={0}
                 aria-label="Ir al inicio"
               >
-                <span className={`text-xl md:text-2xl font-extrabold tracking-tight transition-colors duration-300 ${!isScrolled ? 'text-white' : 'text-gray-900'
-                  }`}>Marcelo Luchetta</span>
+                <img src={logo} alt="Logo de Marcelo Luchetta" className="h-10 w-auto" />
               </Link>
-
-              <a href="https://instagram.com/marcelo_luchetta"
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={0}
-                aria-label="Ir a Instagram"><Icons.Instagram className='w-7 h-7' /></a>
-              <a
-                href="https://www.facebook.com/marceloluchetta"
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={0}
-                aria-label="Ir a Facebook"><Icons.Facebook className={`w-7 h-7 transition-colors duration-300 ${!isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
-                  }`} /></a>
-              <a
-                href="https://wa.me/5491152498558"
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={0}
-                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className={`w-6 h-6 transition-colors duration-300 ${!isScrolled ? 'text-white hover:text-blue-200' : 'text-gray-700 hover:text-blue-600'
-                  }`} /></a>
             </div>
+
             {/* Links desktop */}
             <div className="hidden md:flex items-center space-x-1">
 
               <Link
                 to="/"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/')
-                  ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20 hover:shadow-md'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
+                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/')
+                  ? 'bg-primary text-white shadow-lg'
+                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
                   }`}
                 tabIndex={0}
                 aria-label="Ir a inicio"
@@ -84,11 +58,9 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/productos"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/productos')
-                  ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20 hover:shadow-md'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
+                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/productos')
+                  ? 'bg-primary text-white shadow-lg'
+                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
                   }`}
                 tabIndex={0}
                 aria-label="Ver productos"
@@ -97,11 +69,9 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/quien-soy"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/quien-soy')
-                  ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20 hover:shadow-md'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
+                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/quien-soy')
+                  ? 'bg-primary text-white shadow-lg'
+                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
                   }`}
                 tabIndex={0}
                 aria-label="Conocer más sobre nosotros"
@@ -110,11 +80,9 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/contacto"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold ${isActive('/contacto')
-                  ? 'bg-white text-blue-700 shadow-lg'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20 hover:shadow-md'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white hover:shadow-md'
+                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/contacto')
+                  ? 'bg-primary text-white shadow-lg'
+                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
                   }`}
                 tabIndex={0}
                 aria-label="Contactarnos"
@@ -126,10 +94,7 @@ export default function Navbar() {
               <div className="relative ml-4">
                 <button
                   onClick={handleCartClick}
-                  className={`flex items-center space-x-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-md hover:shadow-lg ${!isScrolled
-                      ? 'bg-white/20 text-white hover:bg-white/30'
-                      : 'bg-blue-300 hover:bg-blue-500 text-white'
-                    }`}
+                  className='flex items-center space-x-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-md hover:shadow-lg bg-blue-100 hover:bg-blue-200 text-gray-800'
                   tabIndex={0}
                   aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}
                 >
@@ -142,12 +107,31 @@ export default function Navbar() {
                   </span>
                 )}
               </div>
+
+            </div >
+            <div className='flex items-center justify-between gap-4'>
+              <a href="https://instagram.com/marcelo_luchetta"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={0}
+                aria-label="Ir a Instagram"><Icons.Instagram className='w-7 h-7 hover:opacity-80 hover:scale-105 transition-opacity' /></a>
+              <a
+                href="https://www.facebook.com/marceloluchetta"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={0}
+                aria-label="Ir a Facebook"><Icons.Facebook className='w-7 h-7 hover:opacity-80 hover:scale-105 transition-opacity' /></a>
+              <a
+                href="https://wa.me/5491152498558"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={0}
+                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className='w-7 h-7 hover:opacity-80 hover:scale-105 transition-opacity' /></a>
             </div>
 
             {/* Botón hamburguesa - móvil */}
             <button
-              className={`md:hidden text-3xl focus:outline-none hover:opacity-80 transition-opacity p-2 ${!isScrolled ? 'text-white' : 'text-gray-700'
-                }`}
+              className='md:hidden text-3xl focus:outline-none hover:opacity-80 transition-opacity p-2 text-gray-700'
               onClick={handleToggleMenu}
               tabIndex={0}
               aria-label="Abrir menú de navegación"
@@ -165,10 +149,8 @@ export default function Navbar() {
                 to="/"
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/')
-                  ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                  ? 'bg-primary text-white shadow-md'
+                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
                 aria-label="Ir a inicio"
@@ -179,10 +161,8 @@ export default function Navbar() {
                 to="/productos"
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/productos')
-                  ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                  ? 'bg-primary text-white shadow-md'
+                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
                 aria-label="Ver productos"
@@ -193,10 +173,8 @@ export default function Navbar() {
                 to="/quien-soy"
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/quien-soy')
-                  ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                  ? 'bg-primary text-white shadow-md'
+                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
                 aria-label="Conocer más sobre nosotros"
@@ -207,10 +185,8 @@ export default function Navbar() {
                 to="/contacto"
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/contacto')
-                  ? 'bg-white text-blue-700 shadow-md'
-                  : !isScrolled
-                    ? 'text-white hover:bg-white/20'
-                    : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                  ? 'bg-primary text-white shadow-md'
+                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
                   }`}
                 tabIndex={0}
                 aria-label="Contactarnos"
@@ -220,9 +196,7 @@ export default function Navbar() {
               {/* Carrito móvil */}
               <button
                 onClick={handleCartClick}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 font-semibold shadow-md ${!isScrolled
-                    ? 'bg-white/20 text-white hover:bg-white/30'
-                    : 'bg-blue-300 hover:bg-blue-500 text-white'
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 font-semibold shadow-md 'bg-blue-300 hover:bg-blue-500 text-white'
                   }`}
                 tabIndex={0}
                 aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}
