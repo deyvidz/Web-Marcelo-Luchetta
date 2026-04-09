@@ -48,25 +48,11 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen py-12 md:py-16">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Nuestros Productos
-          </h1>
-          <div className="w-32 h-1.5 bg-linear-to-r from-blue-600 to-blue-400 mx-auto rounded-full mb-4"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Descubre nuestra amplia gama de equipamiento odontológico profesional
-          </p>
-        </div>
-
+    <div className="min-h-screen py-12 md:py-16 mx-auto px-4">
         {/* Barra de busqueda */}
         <div className="flex flex-wrap justify-center mb-12">
           <SearchBar onSearchChange={handleSearchChange} />
         </div>
-
-
-        <div className='bg-gray-100 md:grid md:grid-flow-col grid-cols-12 gap-4'>
 
           {/* Filtros de categoría */}
           <div className="col-span-4 md:col-span-2 lg:col-span-2 xl:col-span-1 pr-6 ml-5 mt-5">
@@ -82,36 +68,28 @@ export default function Products() {
                     type="checkbox"
                     checked={selectedCategory === cat}
                     onChange={() => handleCategoryChange(cat)}
-                    className="w-4 h-4 rounded border-gray-300 text-blue-600"
+                    className="w-4 h-4 rounded border-gray-300 text-primary"
                   />
                   <span className={`ml-3 md:text-sm text-xs font-semibold transition-all ${selectedCategory === cat
-                    ? 'text-black'
-                    : 'text-gray-700 group-hover:text-gray-900'
+                    ? 'text-text'
+                    : 'text-gray-700 group-hover:text-text/80'
                     }`}>
                     {cat}
                   </span>
                 </label>
               ))}
             </div>
-
           </div>
-          <div className="border-r border-gray-300"></div>
 
           {/* Lista de productos */}
-          <section className="col-span-8 md:col-span-10 lg:col-span-10 xl:col-span-11 p-6 ">
-
-            <div className="border-b-2 border-gray-300"></div>
+          <section className="flex flex-col items-center sm:block">
             {loadingSearch ? (
               <Loading />
             ) : <ProductList
               products={filteredProducts}
-              title={searchQuery ? `Resultados de búsqueda (${filteredProducts.length})` : `${selectedCategory} (${filteredProducts.length})`}
             />}
-            <div className="border-b-2 border-gray-300 pr-6l"></div>
           </section>
-        </div>
-      </div>
 
-    </div>
+      </div>
   );
 }

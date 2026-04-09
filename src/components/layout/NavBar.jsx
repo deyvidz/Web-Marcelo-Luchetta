@@ -1,18 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../../hooks/useCart.js';
 import logo from '../../assets/logo.png';
-import CartModal from '../features/CartModal.jsx';
 import { Icons } from "../../icons/IconLibrary.jsx";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
-  const { getTotalItems } = useCart();
-
-
-  const totalItems = getTotalItems();
   // Función para verificar si el link está activo
   const isActive = (path) => location.pathname === path;
 
@@ -20,10 +13,7 @@ export default function Navbar() {
     setIsOpen(!isOpen);
   };
 
-  const handleCartClick = () => {
-    setIsCartOpen(true);
-    setIsOpen(false);
-  };
+
 
   return (
     <>
@@ -43,13 +33,13 @@ export default function Navbar() {
             </div>
 
             {/* Links desktop */}
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center space-x-5  backdrop-blur-sm rounded-full p-2 pl-4 pr-4 shadow-md">
 
               <Link
                 to="/"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/')
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
+                className={`nav-link font-bold ${isActive('/')
+                    ? 'after:w-full text-text'
+                    : 'text-text/80  hover:text-text '
                   }`}
                 tabIndex={0}
                 aria-label="Ir a inicio"
@@ -58,9 +48,9 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/productos"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/productos')
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
+                className={`nav-link font-bold ${isActive('/productos')
+                  ? 'after:w-full text-text'
+                  : 'text-text/80  hover:text-text '
                   }`}
                 tabIndex={0}
                 aria-label="Ver productos"
@@ -69,9 +59,9 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/quien-soy"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/quien-soy')
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
+                className={`nav-link font-bold ${isActive('/quien-soy')
+                  ? 'after:w-full text-text'
+                  : 'text-text/80  hover:text-text '
                   }`}
                 tabIndex={0}
                 aria-label="Conocer más sobre nosotros"
@@ -80,9 +70,9 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/contacto"
-                className={`px-5 py-2.5 rounded-lg transition-all duration-500 font-semibold ${isActive('/contacto')
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-blue-100 hover:text-gray-800 hover:shadow-md'
+                className={`nav-link font-bold ${isActive('/contacto')
+                  ? 'after:w-full text-text'
+                  : 'text-text/80  hover:text-text '
                   }`}
                 tabIndex={0}
                 aria-label="Contactarnos"
@@ -90,48 +80,33 @@ export default function Navbar() {
                 Contacto
               </Link>
 
-              {/* Icono del carrito */}
-              <div className="relative ml-4">
-                <button
-                  onClick={handleCartClick}
-                  className='flex items-center space-x-2 px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-md hover:shadow-lg bg-blue-100 hover:bg-blue-200 text-gray-800'
-                  tabIndex={0}
-                  aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}
-                >
-                  <Icons.Cart className='w-5 h-5' />
-                  <span>Carrito</span>
-                </button>
-                {totalItems > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center shadow-lg animate-pulse">
-                    {totalItems}
-                  </span>
-                )}
-              </div>
+
 
             </div >
+
             <div className='flex items-center justify-between gap-4'>
               <a href="https://instagram.com/marcelo_luchetta"
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Ir a Instagram"><Icons.Instagram className='w-7 h-7 hover:opacity-80 hover:scale-105 transition-opacity' /></a>
+                aria-label="Ir a Instagram"><Icons.Instagram className='w-7 h-7 hover:opacity-90 hover:scale-105 transition-opacity' /></a>
               <a
                 href="https://www.facebook.com/marceloluchetta"
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Ir a Facebook"><Icons.Facebook className='w-7 h-7 hover:opacity-80 hover:scale-105 transition-opacity' /></a>
+                aria-label="Ir a Facebook"><Icons.Facebook className='w-7 h-7 hover:opacity-90 hover:scale-105 transition-opacity' /></a>
               <a
                 href="https://wa.me/5491152498558"
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={0}
-                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className='w-7 h-7 hover:opacity-80 hover:scale-105 transition-opacity' /></a>
+                aria-label="Contactar por WhatsApp"><Icons.Whatsapp className='w-7 h-7 hover:opacity-90 hover:scale-105 transition-opacity' /></a>
             </div>
 
             {/* Botón hamburguesa - móvil */}
             <button
-              className='md:hidden text-3xl focus:outline-none hover:opacity-80 transition-opacity p-2 text-gray-700'
+              className='md:hidden text-3xl focus:outline-none hover:opacity-80 transition-opacity p-2 text-primary'
               onClick={handleToggleMenu}
               tabIndex={0}
               aria-label="Abrir menú de navegación"
@@ -144,13 +119,13 @@ export default function Navbar() {
 
           {/* Menú móvil */}
           {isOpen && (
-            <div className="md:hidden pb-4 space-y-2 animate-slide-left">
+            <div className="md:hidden flex flex-col pb-4 space-y-2 animate-slide-left border-b border-primary/10">
               <Link
                 to="/"
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/')
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                className={` self-center nav-link ${isActive('/')
+                  ? 'after:w-full text-text'
+                  : 'text-text/80'
                   }`}
                 tabIndex={0}
                 aria-label="Ir a inicio"
@@ -160,9 +135,9 @@ export default function Navbar() {
               <Link
                 to="/productos"
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/productos')
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                className={`self-center nav-link ${isActive('/productos')
+                  ? 'after:w-full text-text'
+                  : 'text-text/80'
                   }`}
                 tabIndex={0}
                 aria-label="Ver productos"
@@ -172,9 +147,9 @@ export default function Navbar() {
               <Link
                 to="/quien-soy"
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/quien-soy')
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                className={`self-center nav-link ${isActive('/quien-soy')
+                  ? 'after:w-full text-text'
+                  : 'text-text/80'
                   }`}
                 tabIndex={0}
                 aria-label="Conocer más sobre nosotros"
@@ -184,39 +159,19 @@ export default function Navbar() {
               <Link
                 to="/contacto"
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3 rounded-lg transition-all duration-200 font-semibold ${isActive('/contacto')
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-gray-700 hover:bg-blue-500 hover:text-white'
+                className={`self-center nav-link  ${isActive('/contacto')
+                  ? 'after:w-full text-text'
+                  : 'text-text/80'
                   }`}
                 tabIndex={0}
                 aria-label="Contactarnos"
               >
                 Contacto
               </Link>
-              {/* Carrito móvil */}
-              <button
-                onClick={handleCartClick}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 font-semibold shadow-md 'bg-blue-300 hover:bg-blue-500 text-white'
-                  }`}
-                tabIndex={0}
-                aria-label={`Abrir carrito de compras${totalItems > 0 ? ` con ${totalItems} productos` : ''}`}
-              >
-                <span className='flex gap-2 items-center'><Icons.Cart className='w-5 h-5' />Carrito</span>
-                {totalItems > 0 && (
-                  <span className="bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center shadow-lg">
-                    {totalItems}
-                  </span>
-                )}
-              </button>
             </div>
           )}
         </div>
       </nav>
-      {/* Modal del carrito */}
-      <CartModal
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-      />
     </>
   );
 }

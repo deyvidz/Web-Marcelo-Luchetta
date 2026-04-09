@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 
 // Crear el contexto
+// eslint-disable-next-line react-refresh/only-export-components
 export const CartContext = createContext();
 
 // Provider que envuelve la aplicación

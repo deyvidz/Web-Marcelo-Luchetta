@@ -2,18 +2,33 @@
 @plugin "tailwindcss-motion";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
+@layer components {
+  .nav-link{
+    @apply relative pb-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+@layer utilities {
+  .bg-grid-pattern {
+    --grid-line: rgba(204, 61, 0, 0.08);
+    background-image: 
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 25px 25px;
+  }
+  .mask-radial-fade {
+    -webkit-mask-image: radial-gradient(circle at center, black 0%, rgba(0,0,0,0.2) 60%, transparent 80%);
+    mask-image: radial-gradient(circle at center, black 0%, rgba(0,0,0,0.2) 60%, transparent 80%);
+  }
+}
+
 @theme {
-  --color-primary: oklch(0.62 0.16 240);
+  --color-primary: oklch(0.36 0.07 235);
   --color-secondary: oklch(0.55 0.08 240);
   --color-accent: oklch(0.45 0.10 190);
-  --color-background: oklch(0.98 0.01 250);
-  --color-surface: oklch(0.96 0.01 250);
   --color-text: oklch(0.25 0.02 255);
-  --color-text-secondary: oklch(0.45 0.02 255);
-  --color-border: oklch(0.88 0.01 255);
-  --color-muted: oklch(0.94 0.03 190);
-  --color-point: oklch(0.68 0.14 190);
-  --color-pointi: oklch(0.82 0.04 190);
+  --color-background: oklch(0.98 0.01 250);
+  --color-backgroundb: oklch(0.98 0.05 250);
+  --color-gray: oklch(0.90 0.01 250);
 }
 
 /* Smooth scrolling global */
@@ -25,10 +40,7 @@ html {
 body {
   background-color: var(--color-background);
 
-  background-image: radial-gradient(60% 120% at 50% 50%, hsla(0,0%,100%,0) 0%, rgba(0,143,219,0.3) 100%);
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
+
   font-family: 'Inter';
 }
 
@@ -127,11 +139,4 @@ h3 {
 
 .animate-bounce-soft {
   animation: bounce-soft 0.6s ease-in-out;
-}
-
-/* Mejorar focus visible para accesibilidad */
-*:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-  border-radius: 4px;
 }
