@@ -1,17 +1,21 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function SearchBar({ onSearchChange }) {
-    const [query, setQuery] = useState('');
+export default function SearchBar({ onSearchChange, value = '' }) {
+    const [query, setQuery] = useState(value);
+
+    useEffect(() => {
+        setQuery(value);
+    }, [value]);
 
     const handleChange = (e) => {
-        const value = e.target.value;
-        setQuery(value);
-        onSearchChange(value);
+        const val = e.target.value;
+        setQuery(val);
+        if (onSearchChange) onSearchChange(val);
     };
 
     const handleClear = () => {
         setQuery('');
-        onSearchChange('');
+        if (onSearchChange) onSearchChange('');
     };
 
     return (

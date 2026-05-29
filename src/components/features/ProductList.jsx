@@ -1,5 +1,13 @@
 import ProductCard from "./ProductCard.jsx";
-export default function ProductsList({ products}) {
+import { ProductListSkeleton } from "./Loading.jsx";
+
+export default function ProductsList({ products, isLoading }) {
+  // Mostrar skeleton mientras carga
+  if (isLoading) {
+    return <ProductListSkeleton count={8} />;
+  }
+
+  // Mostrar mensaje si no hay productos
   if (products.length === 0) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
@@ -11,7 +19,7 @@ export default function ProductsList({ products}) {
 
   return (
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-items-center gap-5">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

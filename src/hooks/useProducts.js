@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { getProducts, getProductById, getFeaturedProducts, getProductsByCategory, getSearchProducts } from "../services/productService";
+import { useState, useEffect, useRef } from "react";
+import { getProducts, getProductById, getFeaturedProducts, getProductsByCategory, getSearchProducts, getProductsWithFilters, getCategories } from "../services/productService";
 
 export const useProducts = () => {
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -130,5 +130,76 @@ export const useSearchProducts = (name) => {
         return () => clearTimeout(fetchProduct);
 
     }, [name]);
+    return { products, loading, error };
+}
+
+// Hook para listar todas las categorías disponibles (independiente de los filtros activos)
+export const useCategories = () => {
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        let isMounted = true;
+        const fetchCategories = async () => {
+            try {
+                setLoading(true);
+                const data = await getCategories();
+                if (isMounted) {
+                    setCategories(data);
+                    setError(null);
+                }
+            } catch (e) {
+                console.error('error', e);
+                if (isMounted) setError('Error al cargar las categorías');
+            } finally {
+                if (isMounted) setLoading(false);
+            }
+        };
+        fetchCategories();
+        return () => { isMounted = false };
+    }, []);
+
+    return { categories, loading, error };
+}
+
+// Hook para consultar productos según filtros (categoria, marca, nombre) — pensado para leer params desde URL
+export const useProductsFiltered = (filters = {}) => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const filtersKey = JSON.stringify(filters);
+
+    // Dependemos intencionadamente de la serialización de `filters`.
+    // Usamos lastKeyRef para evitar refetches redundantes si algo provoca re-ejecución sin cambio real.
+    const lastKeyRef = useRef();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        if (filtersKey === lastKeyRef.current) return; // no change, evita re-fetch
+        lastKeyRef.current = filtersKey;
+
+        console.debug('[useProductsFiltered] fetching with key', filtersKey);
+        let isMounted = true;
+        const fetch = async () => {
+            try {
+                setLoading(true);
+                const data = await getProductsWithFilters(filters);
+                console.debug('[useProductsFiltered] fetched', data.length, 'items');
+                if (isMounted) {
+                    setProducts(data);
+                    setError(null);
+                }
+            } catch (e) {
+                console.error('error', e);
+                if (isMounted) setError('Error al cargar los productos');
+            } finally {
+                if (isMounted) setLoading(false);
+            }
+        };
+        fetch();
+        return () => { isMounted = false };
+    }, [filtersKey]);
+
     return { products, loading, error };
 }

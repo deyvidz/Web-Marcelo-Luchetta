@@ -4,12 +4,12 @@ import { Icons } from '../../icons/IconLibrary.jsx';
 export default function ProductCard({ product }) {
 
   return (
-    <div className=" bg-background rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 transform flex flex-col h-full p-4 text-center gap-2 w-70">
+    <div className=" bg-backgroundb rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 transform flex flex-col h-full p-4 text-center gap-2 w-70">
         <Link to={`/productos/${product.id}`}>
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-48 object-cover rounded-md border border-accent shadow"
+            className="w-full h-48 object-cover rounded-md shadow"
           />
         </Link>
 

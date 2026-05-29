@@ -1,6 +1,5 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CartProvider } from './context/CartContext';
 import { ToastProvider } from './context/ToastContext';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
@@ -9,11 +8,9 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
 import About from './pages/About';
-import Cart from './pages/Cart';
 import ProductPage from './pages/ProductPage';
 function App() {
   return (
-    <CartProvider>
       <ToastProvider>
         <Router>
           <ScrollToTop />
@@ -27,7 +24,6 @@ function App() {
                 <Route path="/productos/:id" element={<ProductPage />} />
                 <Route path="/contacto" element={<Contact />} />
                 <Route path="/quien-soy" element={<About />} />
-                <Route path="/carrito" element={<Cart />} />
               </Routes>
             </main>
 
@@ -35,7 +31,6 @@ function App() {
           </div>
         </Router>
       </ToastProvider>
-    </CartProvider>
   );
 }
 

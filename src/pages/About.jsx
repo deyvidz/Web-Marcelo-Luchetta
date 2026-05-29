@@ -1,4 +1,4 @@
-import vendedora from '../assets/vendedora.jpg';
+
 
 export default function About() {
   return (
@@ -21,7 +21,7 @@ export default function About() {
             {/* Imagen */}
             <div className="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-100 shrink-0">
               <img
-                src={vendedora}
+                src=''
                 alt="Marcelo Luchetta"
                 className="w-full h-full object-cover"
               />

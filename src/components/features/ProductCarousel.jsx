@@ -51,10 +51,10 @@ export default function ProductCarousel({ products }) {
   return (
     <div className=" p-4 md:p-6 w-full ">
 
-        <h2 className="text-xs text-text-secondary text-center  uppercase tracking-widest md:text-xl">PRODUCTOS DESTACADOS</h2>
+        <h2 className="text-2xl font-bold text-text/90 text-center">PRODUCTOS DESTACADOS</h2>
         
       {/* Contenedor principal */}
-      <div className="flex flex-col md:flex-row gap-7 lg:gap-25 items-center justify-center border border-text/30 rounded-lg p-6 bg-backgroundb">
+      <div className="flex flex-col md:flex-row gap-7 lg:gap-25 items-center justify-center  rounded-lg p-6 bg-backgroundb">
         <h2 className="text-2xl text-primary font-bold mt-1 md:hidden">
           {currentProduct.name}
         </h2>
@@ -116,7 +116,7 @@ export default function ProductCarousel({ products }) {
 
             <Link
               to={`/productos/${currentProduct.id}`}
-              className="flex items-center justify-center border border-primary text-primary font-semibold py-3 px-5 rounded-2xl text-sm transition-all bg-white hover:bg-gray/70 "
+              className="flex items-center justify-center  text-white font-semibold py-3 px-5 rounded-2xl text-sm transition-all bg-secondary hover:bg-secondary/90 "
             >
               Más Información
             </Link>

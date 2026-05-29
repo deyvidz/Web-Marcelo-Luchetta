@@ -1,17 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useProduct } from '../hooks/useProducts.js';
-import { useCart } from '../hooks/useCart.js';
-import { useToast } from '../context/ToastContext.jsx';
 import { formatPrice } from '../utils/formatters.js';
 import { Icons } from '../icons/IconLibrary.jsx';
 
 export default function ProductPage() {
     const { id } = useParams();
     const { product, loading, error } = useProduct(id);
-    const { addToCart } = useCart();
-    const { showToast } = useToast();
-    const [added, setAdded] = useState(false);
     const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
 
@@ -59,17 +54,6 @@ export default function ProductPage() {
         );
     }
 
-    const handleAddToCart = () => {
-        for (let i = 0; i < quantity; i++) {
-            addToCart(product);
-        }
-        setAdded(true);
-        showToast(`${quantity} × ${product.name} agregado${quantity > 1 ? 's' : ''} al carrito`, 'success');
-
-        setTimeout(() => {
-            setAdded(false);
-        }, 2000);
-    };
 
     const increaseQuantity = () => setQuantity(prev => prev + 1);
     const decreaseQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
@@ -202,29 +186,7 @@ export default function ProductPage() {
                             </div>
                         </div>
 
-                        {/* Botones de acción */}
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <button
-                                onClick={handleAddToCart}
-                                disabled={added}
-                                className={`flex-1 py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 transform ${added
-                                    ? 'bg-green-600 text-white scale-105 cursor-default'
-                                    : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5'
-                                    } disabled:opacity-75`}
-                                aria-label={added ? 'Producto agregado' : `Agregar ${quantity} unidades al carrito`}
-                            >
-                                {added ? (
-                                    <span className="flex items-center justify-center gap-2">
-                                        ✓ ¡Agregado al carrito!
-                                    </span>
-                                ) : (
-                                    <span className="flex items-center justify-center gap-2">
-                                        <Icons.Cart className="w-6 h-6" />
-                                        Agregar al carrito
-                                    </span>
-                                )}
-                            </button>
-
+                       
                             <Link
                                 to="/carrito"
                                 className="py-4 px-8 rounded-xl font-semibold shadow-sm text-lg bg-gray-300 border-gray-300 text-gray-800 hover:bg-gray-200 transition-colors text-center"
@@ -268,6 +230,5 @@ export default function ProductPage() {
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
