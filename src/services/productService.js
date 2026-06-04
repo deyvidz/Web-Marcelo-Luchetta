@@ -154,6 +154,21 @@ export const getCategories = async () => {
     }
 };
 
+// Lee la colección `brands` (cada doc debe tener un campo `name`).
+// Mismo propósito que getCategories: el sidebar no debe cambiar al filtrar productos.
+export const getBrands = async () => {
+    try {
+        const snapshot = await getDocs(collection(db, 'brands'));
+        return snapshot.docs
+            .map(d => d.data().name)
+            .filter(Boolean)
+            .sort((a, b) => a.localeCompare(b, 'es'));
+    } catch (e) {
+        console.error('Error al obtener marcas:', e);
+        return [];
+    }
+};
+
 export const getBanners = async () => {
     try {
         const bannersRef = collection(db, 'banners');

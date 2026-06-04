@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { getProducts, getProductById, getFeaturedProducts, getProductsByCategory, getSearchProducts, getProductsWithFilters, getCategories } from "../services/productService";
+import { getProducts, getProductById, getFeaturedProducts, getProductsByCategory, getSearchProducts, getProductsWithFilters, getCategories, getBrands } from "../services/productService";
 
 export const useProducts = () => {
     const [products, setProducts] = useState([]);
@@ -161,6 +161,36 @@ export const useCategories = () => {
     }, []);
 
     return { categories, loading, error };
+}
+
+// Hook para listar todas las marcas disponibles (independiente de los filtros activos)
+export const useBrands = () => {
+    const [brands, setBrands] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        let isMounted = true;
+        const fetchBrands = async () => {
+            try {
+                setLoading(true);
+                const data = await getBrands();
+                if (isMounted) {
+                    setBrands(data);
+                    setError(null);
+                }
+            } catch (e) {
+                console.error('error', e);
+                if (isMounted) setError('Error al cargar las marcas');
+            } finally {
+                if (isMounted) setLoading(false);
+            }
+        };
+        fetchBrands();
+        return () => { isMounted = false };
+    }, []);
+
+    return { brands, loading, error };
 }
 
 // Hook para consultar productos según filtros (categoria, marca, nombre) — pensado para leer params desde URL

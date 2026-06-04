@@ -1,19 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import ProductCarousel from '../components/features/ProductCarousel.jsx';
 import Banner from '../components/features/Banner.jsx';
 import { useFeaturedProduct } from '../hooks/useProducts.js';
 import { useBanners } from '../hooks/useBanners.js';
-import ProductList from '../components/features/ProductList.jsx';
 import Loading from '../components/features/Loading.jsx';
-import Logo from '../assets/logonombre.png';
-import Banner1 from '../assets/bannerK.webp';
-import Banner2 from '../assets/bannerS.webp';
 import { Icons } from '../icons/IconLibrary.jsx';
-import { GridLayout } from '../components/features/GridLayout.jsx';
 import { GridCard } from '../components/features/GridCard.jsx';
 import { CardList } from '../components/features/CardList.jsx';
-import { Card } from '../components/features/Card.jsx';
 import { BannerSkeleton } from '../components/features/Loading.jsx';
 export default function Home() {
     const { products, loading } = useFeaturedProduct();

@@ -22,7 +22,7 @@ export default function SearchBar({ onSearchChange, value = '' }) {
         <div className="relative flex flex-col w-full max-w-md mx-2">
             <input
                 type="text"
-                placeholder="Buscar productos..."
+                placeholder="Buscar productos por nombre..."
                 value={query}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
