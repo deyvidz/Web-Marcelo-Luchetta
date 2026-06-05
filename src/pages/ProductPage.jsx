@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useProduct } from '../hooks/useProducts.js';
+import { useProduct } from '../hooks/useProductQueries.js';
 import { formatPrice } from '../utils/formatters.js';
 import { Icons } from '../icons/IconLibrary.jsx';
 

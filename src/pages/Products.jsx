@@ -1,13 +1,14 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductList from '../components/features/ProductList.jsx';
-import { useProductsFiltered, useCategories, useBrands } from '../hooks/useProducts.js';
+import { useProductsFiltered, useCategories, useBrands } from '../hooks/useFilters.js';
 import SearchBar from '../components/layout/SearchBar.jsx';
 import { Icons } from '../icons/IconLibrary.jsx';
 import { FILTER_KEYS, FILTER_LABELS, PRICE_RANGES, getActivePriceLabel } from '../utils/filterConfig.js';
 import RadioRow from '../components/features/filters/RadioRow.jsx';
 import FilterChip from '../components/features/filters/FilterChip.jsx';
 import FilterSection from '../components/features/filters/FilterSection.jsx';
+import WhatsappCta from '../components/features/WhatsappCta.jsx';
 
 export default function Products() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -251,6 +252,11 @@ export default function Products() {
                     />
                 </section>
             </div>
+
+            <WhatsappCta title="¿No encontrás lo que buscás?">
+                Escribime y te ayudo a conseguir el producto que necesitás
+                para tu consultorio.
+            </WhatsappCta>
         </div>
     );
 }

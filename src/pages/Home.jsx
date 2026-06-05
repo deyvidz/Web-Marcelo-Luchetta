@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import ProductCarousel from '../components/features/ProductCarousel.jsx';
 import Banner from '../components/features/Banner.jsx';
-import { useFeaturedProduct } from '../hooks/useProducts.js';
+import { useFeaturedProduct } from '../hooks/useProductQueries.js';
 import { useBanners } from '../hooks/useBanners.js';
 import Loading from '../components/features/Loading.jsx';
-import { Icons } from '../icons/IconLibrary.jsx';
-import { GridCard } from '../components/features/GridCard.jsx';
 import { CardList } from '../components/features/CardList.jsx';
 import { BannerSkeleton } from '../components/features/Loading.jsx';
+import WhatsappCta from '../components/features/WhatsappCta.jsx';
 export default function Home() {
     const { products, loading } = useFeaturedProduct();
     const { banners, loading: bannersLoading } = useBanners();
     const [imgLoaded, setImgLoaded] = useState(false);
     return (
         <div className="min-h-screen top-0 bg-background">
-            {/* Hero Section  TODO: IMPLEMENTAR SKELETON DE BANNER, HACER TARJETAS RESPONSIVE*/}
 
             <div className='relative mb-20'>
                 {(bannersLoading || !imgLoaded) && <BannerSkeleton />}
@@ -38,28 +36,13 @@ export default function Home() {
                 {loading ? (<Loading />) :
                     <ProductCarousel products={products} loading={loading} title="Destacados" />}
             </section>
-            {/* category Section */}
 
-            <GridCard titulo="Kytinon" type="Marca" />
 
             {/* CTA Section */}
-            <section className="bg-backgroundb text-text py-16 lg:py-20 mt-16 relative overflow-hidden">
-                <div className="container mx-auto px-4 text-center relative z-10">
-                    <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                        ¿Buscas un producto en específico?
-                    </h2>
-                    <p className="text-xl lg:text-2xl mb-8 text-text/80">
-                        Contactanos y te ayudamos a encontrarlo.
-                    </p>
-                    <a href="https://wa.me/1152498558"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex justify-center items-center bg-primary text-white hover:bg-primary/80 font-bold py-4 rounded-2xl duration-300 shadow text-lg"
-                        aria-label="Contáctanos para buscar un producto específico"
-                    ><Icons.Whatsapp className="w-5 h-5 mr-1 group-hover:rotate-12 duration-300 fill-white" /> Contactanos
-                    </a>
-                </div>
-            </section>
+            <WhatsappCta title="¿Buscás un producto específico?">
+                Contactame y te ayudo a encontrar el equipamiento
+                ideal para tu consultorio.
+            </WhatsappCta>
 
         </div>
     );

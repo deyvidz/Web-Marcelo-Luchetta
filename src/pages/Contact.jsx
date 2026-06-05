@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useToast } from '../context/ToastContext.jsx';
-import { Icons } from "../icons/IconLibrary.jsx";
 import { saveContactMessage } from "../services/contactService";
+import WhatsappCta from '../components/features/WhatsappCta.jsx';
 export default function Contact() {
   const { showToast } = useToast();
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
@@ -139,55 +139,10 @@ export default function Contact() {
           </button>
         </form>
 
-        {/* Información de contacto */}
-        <div className="mt-10 bg-linear-to-br from-blue-50 to-white shadow-xl rounded-2xl p-8 border border-blue-100">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
-            Otras formas de contacto
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div className="flex flex-col items-center text-center bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-              <Icons.Facebook className=' w-7 h-7' />
-              <p className="text-gray-600 font-medium mb-2">Facebook</p>
-              <a
-                href="https://www.facebook.com/marceloluchetta"
-                target="_blank"
-                className="text-blue-600 hover:text-blue-700 font-semibold break-all"
-                tabIndex={0}
-                aria-label="Enviar email a marceloluchetta@hotmail.com"
-              >
-                Marcelo Oscar Luchetta
-              </a>
-            </div>
-            <div className="flex flex-col items-center text-center bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-              <Icons.Whatsapp className=' w-7 h-7' />
-              <p className="text-gray-600 font-medium mb-2">WhatsApp</p>
-              <a
-                href="https://wa.me/5491152498558"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green-600 hover:text-green-700 font-semibold"
-                tabIndex={0}
-                aria-label="Contactar por WhatsApp"
-              >
-                +54 11 5249-8558
-              </a>
-            </div>
-            <div className="flex flex-col items-center text-center bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-              <Icons.Instagram className=' w-7 h-7' />
-              <p className="text-gray-600 font-medium mb-2">Instagram</p>
-              <a
-                href="https://instagram.com/marcelo_luchetta"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-pink-600 hover:text-pink-700 font-semibold"
-                tabIndex={0}
-                aria-label="Seguir en Instagram"
-              >
-                @marcelo_luchetta
-              </a>
-            </div>
-          </div>
-        </div>
+        {/* CTA: WhatsApp directo */}
+        <WhatsappCta title="¿Preferís escribirnos por WhatsApp?">
+          Tocá el botón y te respondemos a la brevedad con atención personalizada.
+        </WhatsappCta>
       </div>
     </div>
   );
