@@ -21,8 +21,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4 max-w-2xl">
-        <h1 className="text-4xl font-bold text-text mb-4 text-center">Contáctanos</h1>
-        <div className="w-24 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"></div>
+        <h1 className="text-4xl font-bold text-text text-center">Contáctanos</h1>
+        <div className="w-24 h-1 mb-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"></div>
         <p className="text-gray text-center mb-8">
           ¿Estas buscando un producto en especifico? Completa el formulario y te responderemos a la brevedad
         </p>

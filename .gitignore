@@ -7,10 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Lockfiles de package managers que NO usamos.
+# Solo comiteamos pnpm-lock.yaml y pnpm-workspace.yaml.
+package-lock.json
+yarn.lock
+
 node_modules
 dist
 dist-ssr
 *.local
+
+# Vite cache
+.vite
+
+# Variables de entorno (Firebase hoy está hardcoded en src/services/firebase.js,
+# pero si en el futuro se mueve a .env, que no se commitee)
+.env
+.env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
@@ -22,4 +36,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-".cursor/" 
+".cursor/"
