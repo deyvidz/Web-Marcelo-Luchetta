@@ -122,6 +122,32 @@ export const Icons = {
       d="M9.293 18.707a1 1 0 0 1 0-1.414L14.586 12 9.293 6.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414 0Z"
     />
   </svg>),
+  ChevronLeft: (props) => (<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    viewBox="0 0 24 24"
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M14.707 5.293a1 1 0 0 1 0 1.414L9.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6a1 1 0 0 1 0-1.414l6-6a1 1 0 0 1 1.414 0Z"
+    />
+  </svg>),
+  ChevronDown: (props) => (<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={800}
+    height={800}
+    viewBox="0 0 24 24"
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M5.293 9.293a1 1 0 0 1 1.414 0L12 14.586l5.293-5.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 0-1.414Z"
+    />
+  </svg>),
   Plus: (props) => (<svg
     xmlns="http://www.w3.org/2000/svg"
     width={800}

@@ -42,6 +42,7 @@
   --color-backgroundc: oklch(0.96 0.05 250);
   --color-gray: oklch(0.5 0.1 260);
   --color-white:oklch(0.99 0.005 250);
+  --color-whatsapp: oklch(0.55 0.13 145);
 }
 
 /* Smooth scrolling global */

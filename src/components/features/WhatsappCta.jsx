@@ -1,11 +1,5 @@
 import { Icons } from '../../icons/IconLibrary.jsx';
-
-// Número de WhatsApp con formato internacional (54 = Argentina, 11 = Buenos Aires).
-// Centralizado acá para no repetirlo en cada página.
-const PHONE = '5491152498558';
-
-// Mensaje predeterminado que se precarga en WhatsApp al abrir el chat.
-const DEFAULT_MESSAGE = 'Hola Marcelo, te contacto desde la web porque estoy buscando un producto específico. ¿Me podés ayudar?';
+import { buildWhatsappUrl, DEFAULT_WHATSAPP_MESSAGE } from '../../utils/whatsapp.js';
 
 // Card azul con CTA de WhatsApp. Reutilizada en Home, About, Contact, Products.
 // El ícono decorativo grande semitransparente queda anclado a la esquina inferior
@@ -13,11 +7,11 @@ const DEFAULT_MESSAGE = 'Hola Marcelo, te contacto desde la web porque estoy bus
 //
 // Props:
 //   title    — string, título de la card
-//   message  — string, mensaje predefinido (opcional, default = DEFAULT_MESSAGE)
+//   message  — string, mensaje predefinido (opcional, default = DEFAULT_WHATSAPP_MESSAGE)
 //   children — contenido opcional debajo del título (ej: bajada descriptiva)
 //
-export default function WhatsappCta({ title, message = DEFAULT_MESSAGE, children }) {
-    const href = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+export default function WhatsappCta({ title, message = DEFAULT_WHATSAPP_MESSAGE, children }) {
+    const href = buildWhatsappUrl(message);
 
     return (
         <section className="bg-primary text-white rounded-2xl shadow-sm mx-4 my-16 lg:my-20 p-8 md:p-12 text-center relative overflow-hidden">
